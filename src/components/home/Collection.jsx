@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import React, { Component, Fragment } from "react";
+import { Card, Col, Container, Row } from "react-bootstrap";
 
 export default class Collection extends Component {
   render() {

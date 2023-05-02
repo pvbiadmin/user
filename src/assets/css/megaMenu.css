@@ -14,21 +14,25 @@
     overflow: paged-y;
     box-shadow: 0 0 2px 0 rgba(57, 78, 234, 0.1)
 }
+
 .active, .accordion:hover {
     color: #ffffff;
     font-weight: 400;
     background-color: #051b35;
 }
+
 .accordion:after {
     content: '\276F';
     color: #c2c2c2;
     float: right;
     margin-left: 5px;
 }
+
 .active:after,hover {
     color: #ffffff;
     content: "\276E";
 }
+
 .panel {
     padding: 0 10px;
     background-color: white;
@@ -36,6 +40,7 @@
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
+
 .accordionMenuDiv{
     width: 100%;
     direction:rtl;
@@ -64,18 +69,20 @@
     background: #F4F4F4!important;
 }
 
-
 .accordionMenuDivInside{
     direction:ltr;
 }
+
 .accordionMenuIcon{
     width: 20px;
     height: auto;
 }
+
 .accordionItem{
     color: #444;
     text-decoration: none;
 }
+
 .accordionItem:hover{
     text-decoration: none;
 }

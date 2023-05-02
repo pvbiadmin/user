@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import { Card, Container, Row } from 'react-bootstrap';
-import Slider from 'react-slick';
+import React, { Component, Fragment } from "react";
+import { Card, Container, Row } from "react-bootstrap";
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
@@ -68,7 +68,7 @@ export default class NewArrival extends Component {
               <button className="btn btn-sm ml-2 site-btn" onClick={this.previous}><i className="fa fa-angle-left"></i></button>
               <button className="btn btn-sm ml-2 site-btn" onClick={this.next}><i className="fa fa-angle-right"></i></button>
             </h2>
-            <p>Some Of Our Exclusive Collections</p>
+            <p>Some Of Our Newest Arrivals</p>
           </div>
           <Row>
             <Slider ref={c => (this.slider = c)} {...settings}>

@@ -2,6 +2,7 @@
     border: none !important;
     border-radius: 0px !important;
 }
+
 .btn:focus {
     box-shadow: none;
 }
@@ -15,7 +16,6 @@
    background: #051b35 !important;
 }
 
-
 .site-btn{
     font-weight: 300;
     padding: 5px;
@@ -27,7 +27,6 @@
 .site-btn:active{
     background: #051b35 !important;
 }
-
 
 .pure-material-button-contained {
     position: relative;
@@ -93,7 +92,6 @@
 .pure-material-button-contained:focus {
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
 }
-
 
 .pure-material-button-contained:focus::before {
     opacity: 0.24;

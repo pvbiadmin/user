@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import React, { Component, Fragment } from "react";
+import { Card, Col, Container, Row } from "react-bootstrap";
 
 export default class FeaturedProducts extends Component {
   render() {
@@ -8,7 +8,7 @@ export default class FeaturedProducts extends Component {
         <Container className="text-center" fluid={true}>
           <div className="section-title text-center mb-55">
             <h2>FEATURED PRODUCTS</h2>
-            <p>Some Of Our Exclusive Collections</p>
+            <p>Some Of Our Featured Products</p>
           </div>
           <Row className="card-deck">
             <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>

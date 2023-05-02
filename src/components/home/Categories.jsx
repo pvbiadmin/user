@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react'
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import React, { Component, Fragment } from "react";
+import { Card, Col, Container, Row } from "react-bootstrap";
 
 export default class Categories extends Component {
   render() {
@@ -8,8 +8,9 @@ export default class Categories extends Component {
         <Container className="text-center" fluid={true}>
             <div className="section-title text-center mb-55">
                 <h2>CATEGORIES</h2>
-                <p>Some Of Our Exclusive Collections</p>
+                <p>Browse Our Product Categories</p>
             </div>
+            
             <Row>
                 <Col key={1} xl={6} lg={6} md={2} sm={12} xs={12}>
                     <Row>

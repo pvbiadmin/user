@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from "react";
-import { Card, Container, Row } from 'react-bootstrap';
-import Slider from 'react-slick';
+import React, { Component } from "react";
+import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import ImgSlider1 from "../../assets/images/slider1.jpg";
@@ -10,7 +9,7 @@ import ImgSlider3 from "../../assets/images/slider3.jpg";
 export default class HomeSlider extends Component {
   render() {
     const settings = {
-      dots: true,
+      dots: false,
       infinite: true,
       speed: 500,
       autoplay: true,
