@@ -35,6 +35,7 @@ export default class MegaMenu extends Component {
       <div className="accordionMenuDiv">
         <div className="accordionMenuDivInside">
           <button className="accordion">
+            {/* {'<img className="accordionMenuIcon" src="" alt="">'} */}
             <i className="fa fa-tshirt ml-2"></i> Men's Clothing
           </button>
           <div className="panel">

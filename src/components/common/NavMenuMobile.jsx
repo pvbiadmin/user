@@ -59,9 +59,10 @@ export default class NavMenuMobile extends Component {
             <MegaMenuMobile />
           </div>
 
-          <div onClick={this.ContentOverlayClickHandler} className={this.state.ContentOverState}>
-
-          </div>          
+          <div 
+            onClick={this.ContentOverlayClickHandler} 
+            className={this.state.ContentOverState}
+          ></div>          
         </div>
       </Fragment>
     )
