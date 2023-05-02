@@ -48,7 +48,7 @@ export default class NavMenuMobile extends Component {
                 <Button onClick={this.MenuBarClickHandler} className="btn">
                   <i className="fa fa-bars"></i>
                 </Button>           
-                <Link to="/"><img className="nav-logo ml-2" src={ImgLogo} alt="logo" /></Link>
+                <Link to="/"><img className="nav-logo ml-2 mr-2" src={ImgLogo} alt="logo" /></Link>
                 <Button className="cart-btn">
                   <i className="fa fa-shopping-cart"></i>{" "}3 Items
                 </Button>                  
@@ -60,7 +60,7 @@ export default class NavMenuMobile extends Component {
           </div>
 
           <div onClick={this.ContentOverlayClickHandler} className={this.state.ContentOverState}>
-            
+
           </div>          
         </div>
       </Fragment>
