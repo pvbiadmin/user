@@ -63,6 +63,12 @@ export default class NavMenuDesktop extends Component {
 
                 <Col className="p-1 mt-1" lg={4} md={4} sm={12} xs={12}>
                   <Link to="/" className="btn">
+                    <i className="h4 fa fa-heart"></i>
+                    <sup>
+                      <span className="badge text-white bg-danger">3</span>
+                    </sup>
+                  </Link>
+                  <Link to="/" className="btn">
                     <i className="h4 fa fa-bell"></i>
                     <sup>
                       <span className="badge text-white bg-danger">5</span>
