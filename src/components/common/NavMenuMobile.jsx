@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import ImgLogo from "../../assets/images/logo.png";
+import ImgLogo from "../../assets/images/logo.svg";
 import MegaMenuMobile from "../home/MegaMenuMobile";
 
 export default class NavMenuMobile extends Component {
