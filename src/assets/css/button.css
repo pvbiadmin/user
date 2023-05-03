@@ -1,3 +1,13 @@
+.btn-mega {
+    border: none !important;
+    border-radius: 0px !important;
+    background: #2BA194 !important;
+}
+
+.btn-mega:focus {
+    box-shadow: none;
+}
+
 .btn {
     border: none !important;
     border-radius: 0px !important;

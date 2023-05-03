@@ -45,7 +45,7 @@ export default class NavMenuMobile extends Component {
         <Container fluid={"true"} className="fixed-top shadow-sm p-2 mb-0 bg-white">
             <Row>
               <Col lg={4} md={4} sm={12} xs={12}>
-                <Button onClick={this.MenuBarClickHandler} className="btn">
+                <Button onClick={this.MenuBarClickHandler} className="btn-mega">
                   <i className="fa fa-bars"></i>
                 </Button>           
                 <Link to="/"><img className="nav-logo ml-2 mr-2" src={ImgLogo} alt="logo" /></Link>
