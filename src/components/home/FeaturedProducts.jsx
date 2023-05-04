@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
-
+import { Link } from "react-router-dom";
 export default class FeaturedProducts extends Component {
   render() {
     return (
@@ -12,17 +12,19 @@ export default class FeaturedProducts extends Component {
           </div>
           <Row className="card-deck">
             <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
-              <Card className="image-box card"> 
-                <img 
-                  className="center"
-                  src="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/i/y/j/-original-imagkp8fpw35uygd.jpeg?q=70" 
-                  alt="" 
-                />             
-                <Card.Body>
-                  <p className="product-name-on-card">Realme 10 Pro+ 5G</p> 
-                  <p className="product-price-on-card">₹25,999</p>           
-                </Card.Body>
-              </Card>              
+              <Link to="/productdetails">
+                <Card className="image-box card"> 
+                  <img 
+                    className="center"
+                    src="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/i/y/j/-original-imagkp8fpw35uygd.jpeg?q=70" 
+                    alt="" 
+                  />             
+                  <Card.Body>
+                    <p className="product-name-on-card">Realme 10 Pro+ 5G</p> 
+                    <p className="product-price-on-card">₹25,999</p>           
+                  </Card.Body>
+                </Card>
+              </Link>                            
             </Col>
 
             <Col className="p-1" key={2} xl={2} lg={2} md={2} sm={4} xs={6}>
