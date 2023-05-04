@@ -4,6 +4,7 @@ import NavMenuMobile from "../components/common/NavMenuMobile";
 import NavMenuDesktop from "../components/common/NavMenuDesktop";
 import FooterMobile from "../components/common/FooterMobile";
 import ProductDetails from "../components/productDetails/ProductDetails";
+import SuggestedProducts from "../components/productDetails/SuggestedProducts";
 
 export default class ProductDetailsPage extends Component {
   componentDidMount() {
@@ -21,6 +22,7 @@ export default class ProductDetailsPage extends Component {
         </div>
 
         <ProductDetails />
+        <SuggestedProducts />
         
         <div className="Desktop">
           <FooterDesktop />
