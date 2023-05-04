@@ -25,7 +25,7 @@ export default class Contact extends Component {
                     2 Pines Park, Lubas Rd, La Trinidad, Benguet, Philippines 2601<br/>
                     Email: pvbistore@gmail.com
                   </p>
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15306.272229678292!2d120.59218364138168!3d16.44674941166847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391a30ea3e638f5%3A0xd5b91815f0aecbd8!2sLubas%2C%20La%20Trinidad%2C%20Benguet!5e0!3m2!1sen!2sph!4v1683165185805!5m2!1sen!2sph" width="550" height="450" styles="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  <iframe title="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15306.272229678292!2d120.59218364138168!3d16.44674941166847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391a30ea3e638f5%3A0xd5b91815f0aecbd8!2sLubas%2C%20La%20Trinidad%2C%20Benguet!5e0!3m2!1sen!2sph!4v1683165185805!5m2!1sen!2sph" width="550" height="450" styles="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </Col>
               </Row>
 
