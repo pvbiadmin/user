@@ -15,7 +15,7 @@ export default class FooterDesktop extends Component {
                 <h5 className="footer-menu-title">OFFICE ADDRESS</h5>
                 <p>
                 2 Pines Park, Lubas Rd, La Trinidad, Benguet, Philippines 2601<br/>
-                  Email: support@syswebdev.tech
+                  Email: pvbistore@gmail.com
                 </p>
                 <h5 className="footer-menu-title">SOCIAL LINK</h5>
                 <a className="icon-social" href="//facebook.com"><i className="m-1 h4 fab fa-facebook"></i></a>
