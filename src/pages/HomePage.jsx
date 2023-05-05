@@ -9,10 +9,17 @@ import HomeTop from "../components/home/HomeTop";
 import NewArrival from "../components/home/NewArrival";
 import HomeTopMobile from "../components/home/HomeTopMobile";
 import FooterMobile from "../components/common/FooterMobile";
+import axios from "axios";
+import AppUrl from "../api/AppUrl";
 
 export default class HomePage extends Component {
   componentDidMount() {
     window.scroll(0, 0);
+    this.GetVisitorDetails();
+  }
+
+  GetVisitorDetails = () => {
+    axios.get(AppUrl.VisitorDetails).then().catch();
   }
 
   render() {
