@@ -77,9 +77,9 @@ export default class NavMenuDesktop extends Component {
                   </Link>
                   <button className="btn"><i className="h4 fa fa-mobile-alt"></i></button>
                   <Link to="/login" className="h4 btn">LOGIN</Link>
-                  <Button className="cart-btn">
+                  <Link to="/cart" className="cart-btn">
                     <i className="fa fa-shopping-cart"></i>{" "}3 Items
-                  </Button>
+                  </Link>
                 </Col>
               </Row>
             </Container>

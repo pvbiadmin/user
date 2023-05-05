@@ -1,0 +1,5 @@
+.cart-product-img {
+    height: 100px;
+    object-fit: cover;
+    margin-left: 80px;
+}
