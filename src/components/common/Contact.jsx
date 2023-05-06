@@ -1,5 +1,8 @@
+import axios from "axios";
 import React, { Component, Fragment } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import AppUrl from "../../api/AppUrl";
+import Validation from "../../validation/Validation";
 
 export default class Contact extends Component {
   constructor() {
@@ -15,30 +18,61 @@ export default class Contact extends Component {
 
   nameOnChange = (event) => {
     let name = event.target.value;
-    // alert(name);
     this.setState({name: name});
   }
 
   emailOnChange = (event) => {
     let email = event.target.value;
-    // alert(email);
     this.setState({email: email});
   }
 
   subjectOnChange = (event) => {
     let subject = event.target.value;
-    // alert(subject);
     this.setState({subject: subject});
   }
 
   messageOnChange = (event) => {
     let message = event.target.value;
-    // alert(message);
     this.setState({message: message});
   }
 
   onFormSubmit = (event) => {
-    alert("Test submit");
+    let name = this.state.name;
+    let email = this.state.email;
+    let subject = this.state.subject;
+    let message = this.state.message;
+
+    if (message.length === 0) {
+      alert("Please write any message");
+    } else if (name.length === 0) {
+      alert("Please enter name");
+    } else if (email.length === 0) {
+      alert("Please enter email address");
+    } else if (subject.length === 0) {
+      alert("Please enter subject");
+    } else if (!(Validation.NameRegex).test(name)) {
+      alert("Invalid name");
+    } else {
+      let MyFormData = new FormData();
+
+      MyFormData.append("name", name);
+      MyFormData.append("email", email);
+      MyFormData.append("subject", subject);
+      MyFormData.append("message", message);
+
+      axios.post(AppUrl.PostContact, MyFormData)
+      .then(function (response) {
+        if (response.status === 200 && response.data === 1) {
+          alert("Message sent successfully");
+        } else {
+          alert("Something went wrong");
+        }
+      }) 
+      .catch(function (error) {
+        alert(error);
+      });
+    }
+   
     event.preventDefault();
   }
 
