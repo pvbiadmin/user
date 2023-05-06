@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { Component, Fragment } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import AppUrl from "../../api/AppUrl";
 import Validation from "../../validation/Validation";
 
@@ -45,15 +47,15 @@ export default class Contact extends Component {
     let contactForm = document.getElementById("contactForm");
 
     if (message.length === 0) {
-      alert("Please write any message");
+      toast.error("Please write any message");
     } else if (name.length === 0) {
-      alert("Please enter valid name");
+      toast.error("Please enter valid name");
     } else if (email.length === 0) {
-      alert("Please enter valid email address");
+      toast.error("Please enter valid email address");
     } else if (subject.length === 0) {
-      alert("Please enter subject");
+      toast.error("Please enter subject");
     } else if (!(Validation.NameRegex).test(name)) {
-      alert("Invalid name");
+      toast.error("Invalid name");
     } else {
       sendBtn.innerHTML = "Sending...";
 
@@ -67,16 +69,16 @@ export default class Contact extends Component {
       axios.post(AppUrl.PostContact, MyFormData)
       .then(function (response) {
         if (response.status === 200 && response.data === 1) {
-          alert("Message sent successfully");
+          toast.success("Message sent successfully");
           sendBtn.innerHTML = "Send";
           contactForm.reset();
         } else {
-          alert("Something went wrong");
+          toast.error("Something went wrong");
           sendBtn.innerHTML = "Send";
         }
       }) 
       .catch(function (error) {
-        alert(error);
+        toast.error(error);
         sendBtn.innerHTML = "Send";
       });
     }
@@ -115,6 +117,7 @@ export default class Contact extends Component {
             </Col>
           </Row>
         </Container>
+        <ToastContainer />
       </Fragment>
     )
   }
