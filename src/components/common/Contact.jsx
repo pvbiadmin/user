@@ -2,6 +2,46 @@ import React, { Component, Fragment } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
 export default class Contact extends Component {
+  constructor() {
+    super();
+    
+    this.state = {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    }
+  }
+
+  nameOnChange = (event) => {
+    let name = event.target.value;
+    // alert(name);
+    this.setState({name: name});
+  }
+
+  emailOnChange = (event) => {
+    let email = event.target.value;
+    // alert(email);
+    this.setState({email: email});
+  }
+
+  subjectOnChange = (event) => {
+    let subject = event.target.value;
+    // alert(subject);
+    this.setState({subject: subject});
+  }
+
+  messageOnChange = (event) => {
+    let message = event.target.value;
+    // alert(message);
+    this.setState({message: message});
+  }
+
+  onFormSubmit = (event) => {
+    alert("Test submit");
+    event.preventDefault();
+  }
+
   render() {
     return (
       <Fragment>
@@ -10,13 +50,14 @@ export default class Contact extends Component {
             <Col className="shadow-sm bg-white mt-2" md={12} lg={12} sm={12} xs={12}>
               <Row className="text-center">
                 <Col className="d-flex justify-content-center" md={6} lg={6} sm={12} xs={12}>
-                  <Form className="onboardForm">
+                  <Form onSubmit={this.onFormSubmit} className="onboardForm">
                     <h4 className="section-title-login">CONTACT US</h4>
-                    <h6 className="section-sub-title">Please send your inquiries and contact with us</h6>                    
-                    <input className="form-control m-2" type="email" placeholder="Enter Email Address" />
-                    <input className="form-control m-2" type="text" placeholder="Enter Subject" />
-                    <input className="form-control m-2" type="text" placeholder="Enter Message" />
-                    <Button className="btn btn-block m-2 site-btn-login">Send</Button>
+                    <h6 className="section-sub-title">Please send your inquiries and contact with us</h6>   
+                    <input onChange={this.nameOnChange} className="form-control m-2" type="text" placeholder="Name" />                 
+                    <input onChange={this.emailOnChange} className="form-control m-2" type="email" placeholder="Email Address" />
+                    <input onChange={this.subjectOnChange} className="form-control m-2" type="text" placeholder="Subject" />                    
+                    <Form.Control onChange={this.messageOnChange} className="form-control m-2" as="textarea" rows={3} placeholder="Message" />
+                    <Button type="submit" className="btn btn-block m-2 site-btn-login">Send</Button>
                   </Form>
                 </Col>
                 <Col className="Desktop p-0 m-0" md={6} lg={6} sm={6} xs={6}>
