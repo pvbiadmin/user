@@ -32,7 +32,7 @@ export default class Purchase extends Component {
             position: "bottom-center"
           });
         }
-      }).catch((error) => {
+      }).catch(() => {
         toast.error("Something went wrong", {
           position: "bottom-center"
         });

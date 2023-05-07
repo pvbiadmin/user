@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { Component, Fragment } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import AppUrl from "../../api/AppUrl";
 import parse from "html-react-parser";
 
@@ -16,21 +18,35 @@ export default class About extends Component {
   }
 
   componentDidMount() {
-    axios.get(AppUrl.AllSiteInfo).then(response => {
-      let StatusCode = response.status;
+    let SiteInfoAbout = sessionStorage.getItem("AllSiteInfo");
 
-      if (StatusCode === 200) {
-        let JsonData = (response.data)[0]["about"];
+    if (SiteInfoAbout === null) {
+      axios.get(AppUrl.AllSiteInfo).then(response => {
+        let StatusCode = response.status;
+  
+        if (StatusCode === 200) {
+          let JsonData = (response.data)[0]["about"];
 
-        this.setState({
-          about: JsonData, 
-          loaderDiv: "d-none",
-          mainDiv: ""
+          this.setState({
+            about: JsonData, 
+            loaderDiv: "d-none",
+            mainDiv: ""
+          });
+
+          sessionStorage.setItem("SiteInfoAbout", JsonData);
+        } else {
+          toast.error("Something went wrong", {
+            position: "bottom-center"
+          });
+        }
+      }).catch(() => {
+        toast.error("Something went wrong", {
+          position: "bottom-center"
         });
-      }
-    }).catch(error => {
-      console.log(error);
-    });
+      });
+    } else {
+      this.setState({about: SiteInfoAbout});
+    }    
   }
 
   render() {
@@ -91,6 +107,7 @@ export default class About extends Component {
             </Col>
           </Row>
         </Container>
+        <ToastContainer />
       </Fragment>
     )
   }
