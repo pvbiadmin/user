@@ -57,46 +57,42 @@ export default class About extends Component {
             <Col className="shadow-sm bg-white mt-2" md={12} lg={12} sm={12} xs={12}>
               <div className={this.state.loaderDiv}>
                 <div className="ph-item">
-                    <div className="ph-col-12">                        
-                      <div className="ph-row">                            
-                          <div className="ph-col-4"></div>
-                          <div className="ph-col-8 empty"></div>
-                          <div className="ph-col-6"></div>
-                          <div className="ph-col-6 empty"></div>
-                          <div className="ph-col-12"></div>
-                          <div className="ph-col-12"></div>
-                          <div className="ph-col-12"></div>
-                          <div className="ph-col-12"></div>
-                      </div>
+                  <div className="ph-col-12">                        
+                    <div className="ph-row">                            
+                      <div className="ph-col-4"></div>
+                      <div className="ph-col-8 empty"></div>
+                      <div className="ph-col-6"></div>
+                      <div className="ph-col-6 empty"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
                     </div>
-                
-                
-                    <div className="ph-col-12">                        
-                        <div className="ph-row">                            
-                            <div className="ph-col-4"></div>
-                            <div className="ph-col-8 empty"></div>
-                            <div className="ph-col-6"></div>
-                            <div className="ph-col-6 empty"></div>
-                            <div className="ph-col-12"></div>
-                            <div className="ph-col-12"></div>
-                            <div className="ph-col-12"></div>
-                            <div className="ph-col-12"></div>
-                        </div>
+                  </div>                
+                  <div className="ph-col-12">                        
+                    <div className="ph-row">                            
+                      <div className="ph-col-4"></div>
+                      <div className="ph-col-8 empty"></div>
+                      <div className="ph-col-6"></div>
+                      <div className="ph-col-6 empty"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
                     </div>
-                
-                
-                    <div className="ph-col-12">                        
-                        <div className="ph-row">                            
-                            <div className="ph-col-4"></div>
-                            <div className="ph-col-8 empty"></div>
-                            <div className="ph-col-6"></div>
-                            <div className="ph-col-6 empty"></div>
-                            <div className="ph-col-12"></div>
-                            <div className="ph-col-12"></div>
-                            <div className="ph-col-12"></div>
-                            <div className="ph-col-12"></div>
-                        </div>
+                  </div>                
+                  <div className="ph-col-12">                        
+                    <div className="ph-row">                            
+                      <div className="ph-col-4"></div>
+                      <div className="ph-col-8 empty"></div>
+                      <div className="ph-col-6"></div>
+                      <div className="ph-col-6 empty"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
+                      <div className="ph-col-12"></div>
                     </div>
+                  </div>
                 </div>
               </div>
               <div className={this.state.mainDiv}>
