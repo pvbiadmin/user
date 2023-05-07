@@ -101,6 +101,7 @@ export default class CompanyProfile extends Component {
             </Col>
           </Row>
         </Container>
+        <ToastContainer />
       </Fragment>
     )
   }
