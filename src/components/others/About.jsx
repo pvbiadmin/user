@@ -9,7 +9,9 @@ export default class About extends Component {
     super();
 
     this.state = {
-      about: ""
+      about: "",
+      loaderDiv: "",
+      mainDiv: "d-none"
     }
   }
 
@@ -20,7 +22,11 @@ export default class About extends Component {
       if (StatusCode === 200) {
         let JsonData = (response.data)[0]["about"];
 
-        this.setState({about: JsonData});
+        this.setState({
+          about: JsonData, 
+          loaderDiv: "d-none",
+          mainDiv: ""
+        });
       }
     }).catch(error => {
       console.log(error);
@@ -33,9 +39,55 @@ export default class About extends Component {
         <Container>
           <Row className="p-2">
             <Col className="shadow-sm bg-white mt-2" md={12} lg={12} sm={12} xs={12}>
-              <h4 className="section-title-login">About Us</h4>
-              <p className="section-title-contact">Welcome to PVB i-Store, your ultimate destination for all your shopping needs!</p>              
-              {parse(this.state.about)}
+              <div className={this.state.loaderDiv}>
+                <div className="ph-item">
+                    <div className="ph-col-12">                        
+                      <div className="ph-row">                            
+                          <div className="ph-col-4"></div>
+                          <div className="ph-col-8 empty"></div>
+                          <div className="ph-col-6"></div>
+                          <div className="ph-col-6 empty"></div>
+                          <div className="ph-col-12"></div>
+                          <div className="ph-col-12"></div>
+                          <div className="ph-col-12"></div>
+                          <div className="ph-col-12"></div>
+                      </div>
+                    </div>
+                
+                
+                    <div className="ph-col-12">                        
+                        <div className="ph-row">                            
+                            <div className="ph-col-4"></div>
+                            <div className="ph-col-8 empty"></div>
+                            <div className="ph-col-6"></div>
+                            <div className="ph-col-6 empty"></div>
+                            <div className="ph-col-12"></div>
+                            <div className="ph-col-12"></div>
+                            <div className="ph-col-12"></div>
+                            <div className="ph-col-12"></div>
+                        </div>
+                    </div>
+                
+                
+                    <div className="ph-col-12">                        
+                        <div className="ph-row">                            
+                            <div className="ph-col-4"></div>
+                            <div className="ph-col-8 empty"></div>
+                            <div className="ph-col-6"></div>
+                            <div className="ph-col-6 empty"></div>
+                            <div className="ph-col-12"></div>
+                            <div className="ph-col-12"></div>
+                            <div className="ph-col-12"></div>
+                            <div className="ph-col-12"></div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div className={this.state.mainDiv}>
+                <h4 className="section-title-login">About Us</h4>
+                <p className="section-title-contact">Welcome to PVB i-Store, your ultimate destination for all your shopping needs!</p>              
+                {parse(this.state.about)}
+              </div>              
             </Col>
           </Row>
         </Container>
