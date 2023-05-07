@@ -44,7 +44,9 @@ export default class CompanyProfile extends Component {
           position: "bottom-center"
         });
       });
-    }
+    } else {
+      this.setState({companyProfile: SiteInfoCompanyProfile});
+    } 
   }
 
   render() {
