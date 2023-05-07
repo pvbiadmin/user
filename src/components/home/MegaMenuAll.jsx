@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import IconCat from "../../assets/images/caticon.png";
 
 export default class MegaMenuAll extends Component {
       constructor() {
@@ -35,8 +36,7 @@ export default class MegaMenuAll extends Component {
       <div className="accordionMenuDivAll">
         <div className="accordionMenuDivInsideAll">
           <button className="accordionAll">
-            {/* {'<img className="accordionMenuIconAll" src="" alt="">'} */}
-            <i className="fa fa-tshirt ml-2"></i> Men's Clothing
+            <img className="accordionMenuIconAll" src={IconCat} alt="" /> Men's Clothing
           </button>
           <div className="panelAll">
             <ul>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import IconCat from "../../assets/images/caticon.png";
 
 export default class MegaMenu extends Component {
   constructor() {
@@ -35,8 +36,7 @@ export default class MegaMenu extends Component {
       <div className="accordionMenuDiv">
         <div className="accordionMenuDivInside">
           <button className="accordion">
-            {/* {'<img className="accordionMenuIcon" src="" alt="">'} */}
-            <i className="fa fa-tshirt ml-2"></i> Men's Clothing
+            <img className="accordionMenuIcon" src={IconCat} alt="" /> Men's Clothing
           </button>
           <div className="panel">
             <ul>
@@ -46,7 +46,7 @@ export default class MegaMenu extends Component {
           </div>
 
           <button className="accordion">
-            <i className="fa fa-tshirt ml-2"></i> Men's Clothing
+            <img className="accordionMenuIcon" src={IconCat} alt="" /> Men's Clothing
           </button>
           <div className="panel">
             <ul>
@@ -56,7 +56,7 @@ export default class MegaMenu extends Component {
           </div>
 
           <button className="accordion">
-            <i className="fa fa-tshirt ml-2"></i> Men's Clothing
+            <img className="accordionMenuIcon" src={IconCat} alt="" /> Men's Clothing
           </button>
           <div className="panel">
             <ul>
@@ -66,7 +66,7 @@ export default class MegaMenu extends Component {
           </div>
 
           <button className="accordion">
-            <i className="fa fa-tshirt ml-2"></i> Men's Clothing
+            <img className="accordionMenuIcon" src={IconCat} alt="" /> Men's Clothing
           </button>
           <div className="panel">
             <ul>
@@ -76,7 +76,7 @@ export default class MegaMenu extends Component {
           </div>
 
           <button className="accordion">
-            <i className="fa fa-tshirt ml-2"></i> Men's Clothing
+            <img className="accordionMenuIcon" src={IconCat} alt="" /> Men's Clothing
           </button>
           <div className="panel">
             <ul>
@@ -86,7 +86,7 @@ export default class MegaMenu extends Component {
           </div>
 
           <button className="accordion">
-            <i className="fa fa-tshirt ml-2"></i> Men's Clothing
+            <img className="accordionMenuIcon" src={IconCat} alt="" /> Men's Clothing
           </button>
           <div className="panel">
             <ul>
@@ -96,7 +96,7 @@ export default class MegaMenu extends Component {
           </div>
 
           <button className="accordion">
-            <i className="fa fa-tshirt ml-2"></i> Men's Clothing
+            <img className="accordionMenuIcon" src={IconCat} alt="" /> Men's Clothing
           </button>
           <div className="panel">
             <ul>
@@ -106,7 +106,7 @@ export default class MegaMenu extends Component {
           </div>
 
           <button className="accordion">
-            <i className="fa fa-tshirt ml-2"></i> Men's Clothing
+            <img className="accordionMenuIcon" src={IconCat} alt="" /> Men's Clothing
           </button>
           <div className="panel">
             <ul>
