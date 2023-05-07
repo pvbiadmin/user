@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { Component, Fragment } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import AppUrl from "../../api/AppUrl";
 import Validation from "../../validation/Validation";
 

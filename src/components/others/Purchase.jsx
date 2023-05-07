@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { Component, Fragment } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import AppUrl from "../../api/AppUrl";
 import parse from "html-react-parser";
 
@@ -14,17 +16,30 @@ export default class Purchase extends Component {
   }
 
   componentDidMount() {
-    axios.get(AppUrl.AllSiteInfo).then(response => {
-      let StatusCode = response.status;
+    let SiteInfoPurchaseGuide = sessionStorage.getItem("AllSiteInfo");
 
-      if (StatusCode === 200) {
-        let JsonData = (response.data)[0]["purchase_guide"];
-
-        this.setState({purchaseGuide: JsonData});
-      }
-    }).catch(error => {
-      console.log(error);
-    });
+    if (SiteInfoPurchaseGuide === null) {
+      axios.get(AppUrl.AllSiteInfo).then(response => {
+        let StatusCode = response.status;
+  
+        if (StatusCode === 200) {
+          let JsonData = (response.data)[0]["purchase_guide"];
+  
+          this.setState({purchaseGuide: JsonData});
+          sessionStorage.setItem("SiteInfoPurchaseGuide", JsonData);
+        } else {
+          toast.error("Something went wrong", {
+            position: "bottom-center"
+          });
+        }
+      }).catch((error) => {
+        toast.error("Something went wrong", {
+          position: "bottom-center"
+        });
+      });
+    } else {
+      this.setState({purchaseGuide: SiteInfoPurchaseGuide});
+    }
   }
 
   render() {
@@ -39,6 +54,7 @@ export default class Purchase extends Component {
             </Col>
           </Row>
         </Container>
+        <ToastContainer />
       </Fragment>
     )
   }
