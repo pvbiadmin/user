@@ -3,14 +3,29 @@ import { Card, Container, Row } from "react-bootstrap";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import axios from "axios";
+import AppUrl from "../../api/AppUrl";
 
 export default class NewArrival extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      productData: []
+    }
+
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
   }
+
+  componentDidMount() {    
+    axios.get(AppUrl.ProductListByRemarks("new")).then(response => {
+      this.setState({
+        productData: response.data
+      });
+    }).catch();
+  }
+
 
   next() {
     this.slider.slickNext();
@@ -21,6 +36,44 @@ export default class NewArrival extends Component {
   }
 
   render() {
+    const newList = this.state.productData;
+
+    const myView = newList.map((newList, i) => {     
+      if (newList.special_price === "na") {
+        return (
+          <div>
+            <Card className="image-box card"> 
+              <img 
+                className="center"
+                src={newList.image} 
+                alt="" 
+              />             
+              <Card.Body>
+                <p className="product-name-on-card">{newList.title}</p> 
+                <p className="product-price-on-card">Price: ${newList.price}</p>           
+              </Card.Body>
+            </Card>
+          </div>
+        )
+      } else {
+        return (
+          <div>
+            <Card className="image-box card"> 
+              <img 
+                className="center"
+                src={newList.image} 
+                alt="" 
+              />             
+              <Card.Body>
+                <p className="product-name-on-card">{newList.title}</p> 
+                <p className="product-price-on-card">Price: <strike className="text-secondary">${newList.price}</strike>{" "}${newList.special_price}</p>           
+              </Card.Body>
+            </Card>
+          </div>
+        )
+      }
+    });
+
     const settings = {
       dots: false,
       infinite: true,
@@ -72,110 +125,7 @@ export default class NewArrival extends Component {
           </div>
           <Row>
             <Slider ref={c => (this.slider = c)} {...settings}>
-              <div>
-                <Card className="image-box card"> 
-                  <img 
-                    className="center"
-                    src="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/i/y/j/-original-imagkp8fpw35uygd.jpeg?q=70" 
-                    alt="" 
-                  />             
-                  <Card.Body>
-                    <p className="product-name-on-card">Realme 10 Pro+ 5G</p> 
-                    <p className="product-price-on-card">₹25,999</p>           
-                  </Card.Body>
-                </Card>
-              </div>
-              <div>
-                <Card className="image-box card"> 
-                  <img 
-                    className="center"
-                    src="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/i/y/j/-original-imagkp8fpw35uygd.jpeg?q=70" 
-                    alt="" 
-                  />             
-                  <Card.Body>
-                    <p className="product-name-on-card">Realme 10 Pro+ 5G</p> 
-                    <p className="product-price-on-card">₹25,999</p>           
-                  </Card.Body>
-                </Card>
-              </div>
-              <div>
-                <Card className="image-box card"> 
-                  <img 
-                    className="center"
-                    src="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/i/y/j/-original-imagkp8fpw35uygd.jpeg?q=70" 
-                    alt="" 
-                  />             
-                  <Card.Body>
-                    <p className="product-name-on-card">Realme 10 Pro+ 5G</p> 
-                    <p className="product-price-on-card">₹25,999</p>           
-                  </Card.Body>
-                </Card>
-              </div>
-              <div>
-                <Card className="image-box card"> 
-                  <img 
-                    className="center"
-                    src="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/i/y/j/-original-imagkp8fpw35uygd.jpeg?q=70" 
-                    alt="" 
-                  />             
-                  <Card.Body>
-                    <p className="product-name-on-card">Realme 10 Pro+ 5G</p> 
-                    <p className="product-price-on-card">₹25,999</p>           
-                  </Card.Body>
-                </Card>
-              </div>
-              <div>
-                <Card className="image-box card"> 
-                  <img 
-                    className="center"
-                    src="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/i/y/j/-original-imagkp8fpw35uygd.jpeg?q=70" 
-                    alt="" 
-                  />             
-                  <Card.Body>
-                    <p className="product-name-on-card">Realme 10 Pro+ 5G</p> 
-                    <p className="product-price-on-card">₹25,999</p>           
-                  </Card.Body>
-                </Card>
-              </div>
-              <div>
-                <Card className="image-box card"> 
-                  <img 
-                    className="center"
-                    src="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/i/y/j/-original-imagkp8fpw35uygd.jpeg?q=70" 
-                    alt="" 
-                  />             
-                  <Card.Body>
-                    <p className="product-name-on-card">Realme 10 Pro+ 5G</p> 
-                    <p className="product-price-on-card">₹25,999</p>           
-                  </Card.Body>
-                </Card>
-              </div>
-              <div>
-                <Card className="image-box card"> 
-                  <img 
-                    className="center"
-                    src="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/i/y/j/-original-imagkp8fpw35uygd.jpeg?q=70" 
-                    alt="" 
-                  />             
-                  <Card.Body>
-                    <p className="product-name-on-card">Realme 10 Pro+ 5G</p> 
-                    <p className="product-price-on-card">₹25,999</p>           
-                  </Card.Body>
-                </Card>
-              </div>
-              <div>
-                <Card className="image-box card"> 
-                  <img 
-                    className="center"
-                    src="https://rukminim1.flixcart.com/image/416/416/xif0q/mobile/i/y/j/-original-imagkp8fpw35uygd.jpeg?q=70" 
-                    alt="" 
-                  />             
-                  <Card.Body>
-                    <p className="product-name-on-card">Realme 10 Pro+ 5G</p> 
-                    <p className="product-price-on-card">₹25,999</p>           
-                  </Card.Body>
-                </Card>
-              </div>
+              {myView}
             </Slider>
           </Row>
         </Container>
