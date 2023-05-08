@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import MegaMenu from "./MegaMenu";
 import HomeSlider from "./HomeSlider";
-import AppURL from "../../api/AppUrl";
+import AppUrl from "../../api/AppUrl";
 import axios from "axios";
 
 export default class HomeTop extends Component {
@@ -15,7 +15,7 @@ export default class HomeTop extends Component {
   }
 
   componentDidMount(){
-    axios.get(AppURL.AllCategoryDetails).then(response => { 
+    axios.get(AppUrl.AllCategoryDetails).then(response => { 
       this.setState({
         MenuData: response.data
       });
