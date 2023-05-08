@@ -9,7 +9,7 @@ export default class HomeTop extends Component {
   constructor() {
     super();
 
-    this.state ={
+    this.state = {
       MenuData: []
     }
   }
