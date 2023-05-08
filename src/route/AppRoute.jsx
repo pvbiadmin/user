@@ -10,6 +10,7 @@ import NotificationPage from "../pages/NotificationPage";
 import PrivacyPage from "../pages/PrivacyPage";
 import ProductCategoryPage from "../pages/ProductCategoryPage";
 import ProductDetailsPage from "../pages/ProductDetailsPage";
+import ProductSubcategoryPage from "../pages/ProductSubcategoryPage";
 import PurchasePage from "../pages/PurchasePage";
 import RefundPage from "../pages/RefundPage";
 import UserLoginPage from "../pages/UserLoginPage";
@@ -32,6 +33,7 @@ export default class AppRoute extends Component {
           <Route exact path="/about" component={AboutPage} />
           <Route exact path="/company" component={CompanyProfilePage} />
           <Route exact path="/productcategory/:category" component={ProductCategoryPage} />
+          <Route exact path="/productsubcategory/:category/:subcategory" component={ProductSubcategoryPage} />
         </Switch>
       </Fragment>
     )

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class MegaMenu extends Component {
   constructor(props){
@@ -32,7 +33,12 @@ export default class MegaMenu extends Component {
                 (CatList.subcategory_name).map((SubList, i) => {
                   return (
                     <li key={i.toString()}>
-                      <a href="/" className="accordionItem" >{SubList.subcategory_name}</a>
+                      <Link 
+                        to={"productsubcategory/" + CatList.category_name + "/" + SubList.subcategory_name} 
+                        className="accordionItem" 
+                      >
+                        {SubList.subcategory_name}
+                      </Link>
                     </li>
                   )
                 })    

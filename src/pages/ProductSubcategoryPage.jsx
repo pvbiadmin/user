@@ -3,16 +3,17 @@ import FooterDesktop from "../components/common/FooterDesktop";
 import NavMenuMobile from "../components/common/NavMenuMobile";
 import NavMenuDesktop from "../components/common/NavMenuDesktop";
 import FooterMobile from "../components/common/FooterMobile";
-import Category from "../components/productDetails/Category";
 import axios from "axios";
 import AppUrl from "../api/AppUrl";
+import Subcategory from "../components/productDetails/Subcategory";
 
-export default class ProductCategoryPage extends Component {
+export default class ProductSubcategoryPage extends Component {
   constructor({match}) {
     super();
 
     this.state = {
       Category: match.params.category,
+      Subcategory: match.params.subcategory,
       ProductData: []
     }
   }
@@ -20,7 +21,7 @@ export default class ProductCategoryPage extends Component {
   componentDidMount() {
     window.scroll(0, 0);
     
-    axios.get(AppUrl.ProductListByCategory(this.state.Category)).then(response => {
+    axios.get(AppUrl.ProductListBySubcategory(this.state.Category, this.state.Subcategory)).then(response => {
       this.setState({
         ProductData: response.data
       });
@@ -29,7 +30,7 @@ export default class ProductCategoryPage extends Component {
 
   render() {
     return (
-        <Fragment>
+      <Fragment>
         <div className="Desktop">
           <NavMenuDesktop />          
         </div>
@@ -37,7 +38,11 @@ export default class ProductCategoryPage extends Component {
           <NavMenuMobile />          
         </div>
 
-        <Category Category={this.state.Category} ProductData={this.state.ProductData} />
+        <Subcategory 
+          Category={this.state.Category} 
+          Subcategory={this.state.Subcategory} 
+          ProductData={this.state.ProductData} 
+        />
         
         <div className="Desktop">
           <FooterDesktop />
