@@ -4,7 +4,7 @@
 
 .slider-img {
   width: 100% !important;
-  height: auto;
+  object-fit: cover;
 }
 
 .slick-slide {
