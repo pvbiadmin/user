@@ -10,7 +10,8 @@ export default class HomeTop extends Component {
     super();
 
     this.state = {
-      MenuData: []
+      MenuData: [],
+      SliderData: [],
     }
   }
 
@@ -18,6 +19,12 @@ export default class HomeTop extends Component {
     axios.get(AppUrl.AllCategoryDetails).then(response => { 
       this.setState({
         MenuData: response.data
+      });
+    }).catch();
+
+    axios.get(AppUrl.AllSlider).then(response => { 
+      this.setState({
+        SliderData: response.data
       });
     }).catch();
   }
@@ -32,7 +39,7 @@ export default class HomeTop extends Component {
             </Col>
 
             <Col lg={9} md={9} sm={12}>
-              <HomeSlider />
+              <HomeSlider data={this.state.SliderData} />
             </Col>
           </Row>
         </Container>

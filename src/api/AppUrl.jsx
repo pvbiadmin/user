@@ -4,6 +4,7 @@ export default class AppUrl {
   static PostContact = this.BaseUrl + "/postcontact";
   static AllSiteInfo = this.BaseUrl + "/allsiteinfo";
   static AllCategoryDetails = this.BaseUrl + "/allcategory";
+  static AllSlider = this.BaseUrl + "/allslider";
 
   static ProductListByRemarks(remarks) {
     return this.BaseUrl + "/productlistbyremarks/" + remarks;

@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import ImgSlider1 from "../../assets/images/slider1.jpg";
-import ImgSlider2 from "../../assets/images/slider2.jpg";
-import ImgSlider3 from "../../assets/images/slider3.jpg";
 
 export default class HomeSlider extends Component {
   render() {
@@ -46,18 +43,20 @@ export default class HomeSlider extends Component {
       ]
     };
 
+    const SliderList = this.props.data;
+
+    const MyView = SliderList.map((Slider, index) => {
+      return (
+        <div key={index.toString()}>
+          <img className="slider-img" src={Slider.slider_image} alt="" />
+        </div>
+      )
+    })
+
     return (
       <div>
         <Slider {...settings}>
-          <div>
-            <img className="slider-img" src={ImgSlider1} alt="" />
-          </div>
-          <div>
-            <img className="slider-img" src={ImgSlider2} alt="" />
-          </div>
-          <div>
-            <img className="slider-img" src={ImgSlider3} alt="" />
-          </div>
+          {MyView}
         </Slider>
       </div>
     )
