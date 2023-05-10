@@ -13,6 +13,7 @@ import ProductDetailsPage from "../pages/ProductDetailsPage";
 import ProductSubcategoryPage from "../pages/ProductSubcategoryPage";
 import PurchasePage from "../pages/PurchasePage";
 import RefundPage from "../pages/RefundPage";
+import RegisterPage from "../pages/RegisterPage";
 import SearchPage from "../pages/SearchPage";
 import UserLoginPage from "../pages/UserLoginPage";
 
@@ -23,6 +24,7 @@ export default class AppRoute extends Component {
         <Switch>
           <Route exact path="/" render={(props) => <HomePage {...props} key={Date.now()} />} />
           <Route exact path="/login" render={(props) => <UserLoginPage {...props} key={Date.now()} />} />
+          <Route exact path="/register" render={(props) => <RegisterPage {...props} key={Date.now()} />} />
           <Route exact path="/contact" render={(props) => <ContactPage {...props} key={Date.now()} />} />
           <Route exact path="/purchase" render={(props) => <PurchasePage {...props} key={Date.now()} />} />
           <Route exact path="/privacy" render={(props) => <PrivacyPage {...props} key={Date.now()} />} />
