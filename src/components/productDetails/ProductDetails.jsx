@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Breadcrumb, Col, Container, Row } from "react-bootstrap";
 import ReactDOM from "react-dom";
+import { Link } from "react-router-dom";
 // import Product1 from "../../assets/images/product/product1.png";
 // import Product2 from "../../assets/images/product/product2.png";
 // import Product3 from "../../assets/images/product/product3.png";
@@ -92,6 +93,14 @@ export default class ProductDetails extends Component {
     return (
       <Fragment>
         <Container fluid={true} className="BetweenTwoSection">
+          <div className="breadbody">
+            <Breadcrumb>
+              <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
+              <Breadcrumb.Item><Link to={"/productcategory/" + category}>{category}</Link></Breadcrumb.Item>
+              <Breadcrumb.Item><Link to={"/productsubcategory/" + category + "/" + subcategory}>{subcategory}</Link></Breadcrumb.Item>
+              <Breadcrumb.Item><Link to={"/productdetails/" + productId}>{title}</Link></Breadcrumb.Item>
+            </Breadcrumb>
+          </div>
           <Row className="p-2">
             <Col className="shadow-sm bg-white pb-3 mt-4" md={12} lg={12} sm={12} xs={12}>
               <Row>

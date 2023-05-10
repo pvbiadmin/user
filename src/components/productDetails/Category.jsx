@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Breadcrumb, Card, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default class Category extends Component {
@@ -50,14 +50,20 @@ export default class Category extends Component {
     return (
       <Fragment>
         <Container className="text-center" fluid={true}>
-          <div className="section-title text-center mb-55 pt-3">
+          <div className="breadbody">
+            <Breadcrumb>
+              <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
+              <Breadcrumb.Item><Link to={"/productcategory/" + category}>{category}</Link></Breadcrumb.Item>
+            </Breadcrumb>
+          </div>
+          <div className="section-title text-center mb-40 mt-2">
             <h2>{category}</h2>
           </div>
           <Row>
             {myView}
           </Row>
         </Container>
-      </Fragment>
+      </Fragment >
     )
   }
 }

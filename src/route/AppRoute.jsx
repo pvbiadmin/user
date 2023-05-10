@@ -32,6 +32,7 @@ export default class AppRoute extends Component {
           <Route exact path="/cart" render={(props) => <CartPage {...props} key={Date.now()} />} />
           <Route exact path="/about" render={(props) => <AboutPage {...props} key={Date.now()} />} />
           <Route exact path="/company" render={(props) => <CompanyProfilePage {...props} key={Date.now()} />} />
+          <Route exact path="/productcategory/:category" render={(props) => <ProductCategoryPage {...props} key={Date.now()} />} />
           <Route exact path="/productsubcategory/:category/:subcategory" render={(props) => <ProductSubcategoryPage {...props} key={Date.now()} />} />
         </Switch>
       </Fragment>

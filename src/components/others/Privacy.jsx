@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { Component, Fragment } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Breadcrumb, Col, Container, Row } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AppUrl from "../../api/AppUrl";
 import parse from "html-react-parser";
+import { Link } from "react-router-dom";
 
 export default class Privacy extends Component {
   constructor() {
@@ -23,12 +24,12 @@ export default class Privacy extends Component {
     if (SiteInfoPrivacyPolicy === null) {
       axios.get(AppUrl.AllSiteInfo).then(response => {
         let StatusCode = response.status;
-  
+
         if (StatusCode === 200) {
           let JsonData = (response.data)[0]["privacy_policy"];
-  
+
           this.setState({
-            privacyPolicy: JsonData, 
+            privacyPolicy: JsonData,
             loaderDiv: "d-none",
             mainDiv: ""
           });
@@ -45,20 +46,26 @@ export default class Privacy extends Component {
         });
       });
     } else {
-      this.setState({privacyPolicy: SiteInfoPrivacyPolicy});
-    }    
+      this.setState({ privacyPolicy: SiteInfoPrivacyPolicy });
+    }
   }
 
   render() {
     return (
       <Fragment>
         <Container>
+          <div className="breadbody">
+            <Breadcrumb>
+              <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
+              <Breadcrumb.Item><Link to="/privacy">Privacy Policy</Link></Breadcrumb.Item>
+            </Breadcrumb>
+          </div>
           <Row className="p-2">
             <Col className="shadow-sm bg-white mt-2" md={12} lg={12} sm={12} xs={12}>
               <div className={this.state.loaderDiv}>
                 <div className="ph-item">
-                  <div className="ph-col-12">                        
-                    <div className="ph-row">                            
+                  <div className="ph-col-12">
+                    <div className="ph-row">
                       <div className="ph-col-4"></div>
                       <div className="ph-col-8 empty"></div>
                       <div className="ph-col-6"></div>
@@ -68,9 +75,9 @@ export default class Privacy extends Component {
                       <div className="ph-col-12"></div>
                       <div className="ph-col-12"></div>
                     </div>
-                  </div>                
-                  <div className="ph-col-12">                        
-                    <div className="ph-row">                            
+                  </div>
+                  <div className="ph-col-12">
+                    <div className="ph-row">
                       <div className="ph-col-4"></div>
                       <div className="ph-col-8 empty"></div>
                       <div className="ph-col-6"></div>
@@ -80,9 +87,9 @@ export default class Privacy extends Component {
                       <div className="ph-col-12"></div>
                       <div className="ph-col-12"></div>
                     </div>
-                  </div>                
-                  <div className="ph-col-12">                        
-                    <div className="ph-row">                            
+                  </div>
+                  <div className="ph-col-12">
+                    <div className="ph-row">
                       <div className="ph-col-4"></div>
                       <div className="ph-col-8 empty"></div>
                       <div className="ph-col-6"></div>
@@ -99,7 +106,7 @@ export default class Privacy extends Component {
                 <h4 className="section-title-login">Privacy Policy</h4>
                 <p className="section-title-contact">Welcome to PVB i-Store! We're thrilled to have you here anWelcome to PVB i-Store! We are committed to protecting the privacy of our customers and users of our website. This Privacy Policy outlines our practices regarding the collection, use, and disclosure of personal information.</p>
                 {parse(this.state.privacyPolicy)}
-              </div>              
+              </div>
             </Col>
           </Row>
         </Container>
