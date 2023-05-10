@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Button, Col, Container, Navbar, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import ImgLogo from "../../assets/images/logo.svg";
 import MegaMenuAll from "../home/MegaMenuAll";
 import ImgBars from "../../assets/images/bars.png";
@@ -11,7 +11,37 @@ export default class NavMenuDesktop extends Component {
 
     this.state = {
       SideNavState: "sideNavClose",
-      ContentOverState: "ContentOverlayClose"
+      ContentOverState: "ContentOverlayClose",
+      SearchKey: "",
+      SearchRedirectStatus: false
+    }
+
+    this.SearchOnChange = this.SearchOnChange.bind(this);
+    this.SearchOnClick = this.SearchOnClick.bind(this);
+    this.SearchRedirect = this.SearchRedirect.bind(this);
+  }
+
+  SearchOnChange(event) {
+    let SearchKey = event.target.value;
+    // alert(SearchKey);
+    this.setState({
+      SearchKey: SearchKey
+    })
+  }
+
+  SearchOnClick() {
+    if (this.state.SearchKey.length >= 2) {
+      this.setState({
+        SearchRedirectStatus: true
+      })
+    }
+  }
+
+  SearchRedirect() {
+    if (this.state.SearchRedirectStatus === true) {
+      return (
+        <Redirect to={"/productbysearch/" + this.state.SearchKey} />
+      )
     }
   }
 
@@ -46,7 +76,7 @@ export default class NavMenuDesktop extends Component {
           <Navbar className="navbar" fixed={"top"} bg="light">
             <Container fluid={"true"} className="fixed-top shadow-sm p-2 mb-0 bg-white">
               <Row>
-                <Col lg={4} md={4} sm={12} xs={12}>  
+                <Col lg={4} md={4} sm={12} xs={12}>
                   <img onClick={this.MenuBarClickHandler} className="bar-img" src={ImgBars} alt="MegaMenu Toggle" />
                   <Link to="/">
                     <img className="nav-logo ml-2" src={ImgLogo} alt="logo" />
@@ -55,11 +85,11 @@ export default class NavMenuDesktop extends Component {
 
                 <Col className="p-1 mt-1" lg={4} md={4} sm={12} xs={12}>
                   <div className="input-group w-100">
-                    <input className="form-control" type="text" />
-                    <Button className="btn site-btn" type="button">
+                    <input onChange={this.SearchOnChange} className="form-control" type="text" />
+                    <Button onClick={this.SearchOnClick} className="btn site-btn" type="button">
                       <i className="fa fa-search"></i>
                     </Button>
-                  </div>                  
+                  </div>
                 </Col>
 
                 <Col className="p-1 mt-1" lg={4} md={4} sm={12} xs={12}>
@@ -82,6 +112,7 @@ export default class NavMenuDesktop extends Component {
                   </Link>
                 </Col>
               </Row>
+              {this.SearchRedirect()}
             </Container>
           </Navbar>
         </div>
@@ -89,10 +120,10 @@ export default class NavMenuDesktop extends Component {
           <MegaMenuAll />
         </div>
 
-        <div 
-          onClick={this.ContentOverlayClickHandler} 
+        <div
+          onClick={this.ContentOverlayClickHandler}
           className={this.state.ContentOverState}
-        ></div>        
+        ></div>
       </Fragment>
     )
   }

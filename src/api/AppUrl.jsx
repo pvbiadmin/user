@@ -22,4 +22,8 @@ export default class AppUrl {
   static ProductDetails(id) {
     return this.BaseUrl + "/productdetails/" + id;
   }
+
+  static ProductBySearch(searchKey) {
+    return this.BaseUrl + "/search/" + searchKey;
+  }
 }

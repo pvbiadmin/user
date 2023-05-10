@@ -13,6 +13,7 @@ import ProductDetailsPage from "../pages/ProductDetailsPage";
 import ProductSubcategoryPage from "../pages/ProductSubcategoryPage";
 import PurchasePage from "../pages/PurchasePage";
 import RefundPage from "../pages/RefundPage";
+import SearchPage from "../pages/SearchPage";
 import UserLoginPage from "../pages/UserLoginPage";
 
 export default class AppRoute extends Component {
@@ -34,6 +35,7 @@ export default class AppRoute extends Component {
           <Route exact path="/company" render={(props) => <CompanyProfilePage {...props} key={Date.now()} />} />
           <Route exact path="/productcategory/:category" render={(props) => <ProductCategoryPage {...props} key={Date.now()} />} />
           <Route exact path="/productsubcategory/:category/:subcategory" render={(props) => <ProductSubcategoryPage {...props} key={Date.now()} />} />
+          <Route exact path="/productbysearch/:searchkey" render={(props) => <SearchPage {...props} key={Date.now()} />} />
         </Switch>
       </Fragment>
     )
