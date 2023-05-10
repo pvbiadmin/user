@@ -3,9 +3,9 @@ import FooterDesktop from "../components/common/FooterDesktop";
 import NavMenuMobile from "../components/common/NavMenuMobile";
 import NavMenuDesktop from "../components/common/NavMenuDesktop";
 import FooterMobile from "../components/common/FooterMobile";
-import Register from "../components/common/Register";
+import Profile from "../components/common/Profile";
 
-export default class RegisterPage extends Component {
+export default class ProfilePage extends Component {
   componentDidMount() {
     window.scroll(0, 0);
   }
@@ -20,7 +20,7 @@ export default class RegisterPage extends Component {
           <NavMenuMobile />
         </div>
 
-        <Register />
+        <Profile />
 
         <div className="Desktop">
           <FooterDesktop />
@@ -32,3 +32,4 @@ export default class RegisterPage extends Component {
     )
   }
 }
+
