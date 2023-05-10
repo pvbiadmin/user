@@ -33,7 +33,7 @@ export default class FeaturedProducts extends Component {
       if (featuredList.special_price === "na") {
         return (
           <Col className="p-1" key={i.toString()} xl={2} lg={2} md={2} sm={4} xs={6}>
-            <Link to="/productdetails">
+            <Link className="text-link" to={" /productdetails/" + featuredList.id} >
               <Card className="image-box card">
                 <img
                   className="center"
@@ -46,12 +46,12 @@ export default class FeaturedProducts extends Component {
                 </Card.Body>
               </Card>
             </Link>
-          </Col>
+          </Col >
         )
       } else {
         return (
           <Col className="p-1" key={i.toString()} xl={2} lg={2} md={2} sm={4} xs={6}>
-            <Link to="/productdetails">
+            <Link className="text-link" to={"/productdetails/" + featuredList.id} >
               <Card className="image-box card">
                 <img
                   className="center"

@@ -1,111 +1,225 @@
 import React, { Component, Fragment } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import Product1 from "../../assets/images/product/product1.png";
-import Product2 from "../../assets/images/product/product2.png";
-import Product3 from "../../assets/images/product/product3.png";
-import Product4 from "../../assets/images/product/product4.png";
+import ReactDOM from "react-dom";
+// import Product1 from "../../assets/images/product/product1.png";
+// import Product2 from "../../assets/images/product/product2.png";
+// import Product3 from "../../assets/images/product/product3.png";
+// import Product4 from "../../assets/images/product/product4.png";
 
 export default class ProductDetails extends Component {
+  // constructor() {
+  //   super();
+  // }
+
+  imgOnclick(event) {
+    let imgSrc = event.target.getAttribute("src");
+    let previewImg = document.getElementById("previewImg");
+    ReactDOM.findDOMNode(previewImg).setAttribute("src", imgSrc);
+  }
+
+  priceOption(price, specialPrice) {
+    if (specialPrice === "na") {
+      return (
+        <p className="product-price-on-card">Price: ${price}</p>
+      )
+    } else {
+      return (
+        <p className="product-price-on-card">Price: <strike className="text-secondary">${price}</strike> ${specialPrice}</p >
+      )
+    }
+  }
+
   render() {
+    let productData = this.props.ProductData;
+
+    let title = productData["productList"][0]["title"];
+    let price = productData["productList"][0]["price"];
+    let specialPrice = productData["productList"][0]["special_price"];
+    let brand = productData["productList"][0]["brand"];
+    let category = productData["productList"][0]["category"];
+    let subcategory = productData["productList"][0]["subcategory"];
+    let image = productData["productList"][0]["image"];
+    let productCode = productData["productList"][0]["product_code"];
+    let remarks = productData["productList"][0]["remarks"];
+    let star = productData["productList"][0]["star"];
+
+    let productId = productData["productDetails"][0]["product_id"];
+    let imageOne = productData["productDetails"][0]["image_one"];
+    let imageTwo = productData["productDetails"][0]["image_two"];
+    let imageThree = productData["productDetails"][0]["image_three"];
+    let imageFour = productData["productDetails"][0]["image_four"];
+    let shortDescription = productData["productDetails"][0]["short_description"];
+    let longDescription = productData["productDetails"][0]["long_description"];
+    let color = productData["productDetails"][0]["color"];
+    let size = productData["productDetails"][0]["size"];
+
+    let colorDiv = "d-none";
+    let sizeDiv = "d-none";
+
+    let colorOptions = "";
+    let sizeOptions = "";
+
+    if (color !== "na") {
+      let colorArr = color.split(",");
+      colorOptions = colorArr.map((colorOption, index) => {
+        return (
+          <option value={colorOption} key={index.toString()}>
+            {colorOption}
+          </option>
+        )
+      });
+
+      colorDiv = "";
+    } else {
+      colorDiv = "d-none";
+    }
+
+    if (size !== "na") {
+      let sizeArr = size.split(",");
+      sizeOptions = sizeArr.map((sizeOption, index) => {
+        return (
+          <option value={sizeOption} key={index.toString()}>
+            {sizeOption}
+          </option>
+        )
+      });
+
+      sizeDiv = "";
+    } else {
+      sizeDiv = "d-none";
+    }
+
     return (
-        <Fragment>
-          <Container fluid={true}  className="BetweenTwoSection">
-            <Row className="p-2">
-              <Col className="shadow-sm bg-white pb-3 mt-4" md={12} lg={12} sm={12} xs={12}>
-                <Row>
-                  <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
-                    <img className="w-100" src={Product1} alt="" />
-                    <Container  className="my-3">
-                      <Row>
-                        <Col className="p-0 m-0"  md={3} lg={3} sm={3} xs={3}>
-                          <img className="w-100" src={Product1} alt="" />
-                        </Col>
-                        <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
-                          <img className="w-100" src={Product2} alt="" />
-                        </Col>
-                        <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
-                          <img className="w-100" src={Product3} alt="" />
-                        </Col>
-                        <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
-                          <img className="w-100" src={Product4} alt="" />
-                        </Col>
-                      </Row>
-                    </Container>
-                  </Col>
-                  <Col className="p-3 " md={6} lg={6} sm={12} xs={12}>
-                    <h5 className="Product-Name">ASUS TUF A15 FA506IU Ryzen 7 4800H GTX</h5>
-                    <h6 className="section-sub-title">Some Of Our Exclusive Collection, You May Like Some Of Our Exclusive Collection</h6>
-                    <div className="input-group">
-                      <div className="Product-price-card d-inline ">Reguler Price 200</div>
-                      <div className="Product-price-card d-inline ">50% Discount</div>
-                      <div className="Product-price-card d-inline ">New Price 100</div>
+      <Fragment>
+        <Container fluid={true} className="BetweenTwoSection">
+          <Row className="p-2">
+            <Col className="shadow-sm bg-white pb-3 mt-4" md={12} lg={12} sm={12} xs={12}>
+              <Row>
+                <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
+                  <div className="div-big-img">
+                    <img id="previewImg" className=" big-image" src={imageOne} alt="" />
+                  </div>
+
+                  <Container className="my-3">
+                    <Row>
+                      <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
+                        <img onClick={this.imgOnclick} className="w-100 product-sm-img" src={imageOne} alt="" />
+                      </Col>
+                      <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
+                        <img onClick={this.imgOnclick} className="w-100 product-sm-img" src={imageTwo} alt="" />
+                      </Col>
+                      <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
+                        <img onClick={this.imgOnclick} className="w-100 product-sm-img" src={imageThree} alt="" />
+                      </Col>
+                      <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
+                        <img onClick={this.imgOnclick} className="w-100 product-sm-img" src={imageFour} alt="" />
+                      </Col>
+                    </Row>
+                  </Container>
+                </Col>
+                <Col className="p-3 " md={6} lg={6} sm={12} xs={12}>
+                  <h5 className="Product-Name">{title}</h5>
+                  <h6 className="section-sub-title">{shortDescription}</h6>
+                  {this.priceOption(price, specialPrice)}
+                  {/* <div className="input-group">
+                    <div className="Product-price-card d-inline ">Regular Price: ${price}</div>
+                    <div className="Product-price-card d-inline ">50% Discount</div>
+                    <div className="Product-price-card d-inline ">New Price: ${specialPrice}</div>
+                  </div> */}
+                  <h6 className="mt-2"><b>Category:</b> {category}</h6>
+                  <h6 className="mt-2"><b>Subcategory:</b> {subcategory}</h6>
+                  <h6 className="mt-2"><b>Brand:</b> {brand}</h6>
+                  <h6 className="mt-2"><b>Product Code:</b> {productCode}</h6>
+
+                  <div className={colorDiv}>
+                    <h6 className="mt-2"><b>Colors</b></h6>
+                    <select className="form-control form-select">
+                      <option>Choose color</option>
+                      {colorOptions}
+                    </select>
+                  </div>
+
+                  <div className={sizeDiv}>
+                    <h6 className="mt-2"><b>Sizes</b></h6>
+                    <select className="form-control form-select">
+                      <option>Choose size</option>
+                      {sizeOptions}
+                    </select>
+                  </div>
+
+                  {/* <h6 className="mt-2">Choose Color</h6>
+                  <div className="input-group">
+                    <div className="form-check mx-1">
+                      <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
+                      <label className="form-check-label" htmlFor="exampleRadios1">Black</label>
                     </div>
-                    <h6 className="mt-2">Choose Color</h6>
-                    <div className="input-group">
-                      <div className="form-check mx-1">
-                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-                        <label className="form-check-label" htmlFor="exampleRadios1">Black</label>
-                      </div>
-                      <div className="form-check mx-1">
-                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-                        <label className="form-check-label" htmlFor="exampleRadios1">Green</label>
-                      </div>
-                      <div className="form-check mx-1">
-                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-                        <label className="form-check-label" htmlFor="exampleRadios1">Red</label>
-                      </div>
+                    <div className="form-check mx-1">
+                      <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
+                      <label className="form-check-label" htmlFor="exampleRadios1">Green</label>
                     </div>
-
-                    <h6 className="mt-2">Choose Size</h6>
-                    <div className="input-group">
-                      <div className="form-check mx-1">
-                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-                        <label className="form-check-label" htmlFor="exampleRadios1">X</label>
-                      </div>
-                      <div className="form-check mx-1">
-                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-                        <label className="form-check-label" htmlFor="exampleRadios1">XX</label>
-                      </div>
-                      <div className="form-check mx-1">
-                        <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-                        <label className="form-check-label" htmlFor="exampleRadios1">XXXX</label>
-                      </div>
+                    <div className="form-check mx-1">
+                      <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
+                      <label className="form-check-label" htmlFor="exampleRadios1">Red</label>
                     </div>
+                  </div> */}
 
-                    <h6 className="mt-2">Quantity</h6>
-                    <input  className="form-control text-center w-50" type="number" />
-
-                    <div className="input-group mt-3">
-                      <button className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i>  Add To Cart</button>
-                      <button className="btn btn-primary m-1"> <i className="fa fa-car"></i> Order Now</button>
-                      <button className="btn btn-primary m-1"> <i className="fa fa-heart"></i> Favourite</button>
+                  {/* <h6 className="mt-2">Choose Size</h6>
+                  <div className="input-group">
+                    <div className="form-check mx-1">
+                      <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
+                      <label className="form-check-label" htmlFor="exampleRadios1">X</label>
                     </div>
-                  </Col>
-                </Row>
+                    <div className="form-check mx-1">
+                      <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
+                      <label className="form-check-label" htmlFor="exampleRadios1">XX</label>
+                    </div>
+                    <div className="form-check mx-1">
+                      <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
+                      <label className="form-check-label" htmlFor="exampleRadios1">XXXX</label>
+                    </div>
+                  </div> */}
 
-                <Row>
-                  <Col className="" md={6} lg={6} sm={12} xs={12}>
-                    <h6 className="mt-2">DETAILS</h6>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation</p>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation</p>
-                  </Col>
+                  <h6 className="mt-2"><b>Quantity</b></h6>
+                  <input className="form-control text-center w-50" placeholder="Choose quantity" type="number" min="0" />
 
-                  <Col className="" md={6} lg={6} sm={12} xs={12}>
-                    <h6 className="mt-2">REVIEWS</h6>
-                    <p className=" p-0 m-0"><span className="Review-Title">Kazi Ariyan</span> <span className="text-success"><i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> </span> </p>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                  {/* <div className="">
+                    <h6 className="mt-2"><b>Quantity</b></h6>
+                    <select className="form-control form-select">
+                      <option>Choose quantity</option>
+                      {sizeOptions}
+                    </select>
+                  </div> */}
 
-                    <p className=" p-0 m-0"><span className="Review-Title">Kazi Ariyan</span> <span className="text-success"><i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> </span> </p>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                  <div className="input-group mt-3">
+                    <button className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i> Add To Cart</button>
+                    <button className="btn btn-primary m-1"> <i className="fa fa-car"></i> Order Now</button>
+                    <button className="btn btn-primary m-1"> <i className="fa fa-heart"></i> Favorite</button>
+                  </div>
+                </Col>
+              </Row>
 
-                    <p className=" p-0 m-0"><span className="Review-Title">Kazi Ariyan</span> <span className="text-success"><i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> </span> </p>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Container>        
-        </Fragment>
+              <Row>
+                <Col className="" md={6} lg={6} sm={12} xs={12}>
+                  <h6 className="mt-2">DETAILS</h6>
+                  {longDescription}
+                </Col>
+
+                <Col className="" md={6} lg={6} sm={12} xs={12}>
+                  <h6 className="mt-2">REVIEWS</h6>
+                  <p className=" p-0 m-0"><span className="Review-Title">Kazi Ariyan</span> <span className="text-success"><i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> </span> </p>
+                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+
+                  <p className=" p-0 m-0"><span className="Review-Title">Kazi Ariyan</span> <span className="text-success"><i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> </span> </p>
+                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+
+                  <p className=" p-0 m-0"><span className="Review-Title">Kazi Ariyan</span> <span className="text-success"><i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> </span> </p>
+                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Container >
+      </Fragment >
     )
   }
 }

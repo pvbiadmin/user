@@ -63,6 +63,10 @@
 .text-link{
    color: inherit;
    text-decoration: inherit;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: inherit;
+    }
 }
 
 .breadbody{

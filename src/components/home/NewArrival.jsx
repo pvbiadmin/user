@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
 import AppUrl from "../../api/AppUrl";
 import NewArrivalLoading from "../PlaceHolder/NewArrivalLoading";
+import { Link } from "react-router-dom";
 
 export default class NewArrival extends Component {
   constructor(props) {
@@ -46,34 +47,38 @@ export default class NewArrival extends Component {
     const myView = newList.map((newList, i) => {
       if (newList.special_price === "na") {
         return (
-          <div>
-            <Card className="image-box card">
-              <img
-                className="center"
-                src={newList.image}
-                alt=""
-              />
-              <Card.Body>
-                <p className="product-name-on-card">{newList.title}</p>
-                <p className="product-price-on-card">Price: ${newList.price}</p>
-              </Card.Body>
-            </Card>
-          </div>
+          <div key={i.toString()}>
+            <Link className="text-link" to={"/productdetails/" + newList.id} >
+              <Card className="image-box card">
+                <img
+                  className="center"
+                  src={newList.image}
+                  alt=""
+                />
+                <Card.Body>
+                  <p className="product-name-on-card">{newList.title}</p>
+                  <p className="product-price-on-card">Price: ${newList.price}</p>
+                </Card.Body>
+              </Card>
+            </Link>
+          </div >
         )
       } else {
         return (
-          <div>
-            <Card className="image-box card">
-              <img
-                className="center"
-                src={newList.image}
-                alt=""
-              />
-              <Card.Body>
-                <p className="product-name-on-card">{newList.title}</p>
-                <p className="product-price-on-card">Price: <strike className="text-secondary">${newList.price}</strike>{" "}${newList.special_price}</p>
-              </Card.Body>
-            </Card>
+          <div key={i.toString()}>
+            <Link className="text-link" to={"/productdetails/" + newList.id} >
+              <Card className="image-box card">
+                <img
+                  className="center"
+                  src={newList.image}
+                  alt=""
+                />
+                <Card.Body>
+                  <p className="product-name-on-card">{newList.title}</p>
+                  <p className="product-price-on-card">Price: <strike className="text-secondary">${newList.price}</strike>{" "}${newList.special_price}</p>
+                </Card.Body>
+              </Card>
+            </Link>
           </div>
         )
       }

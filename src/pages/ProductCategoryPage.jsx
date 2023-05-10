@@ -8,7 +8,7 @@ import axios from "axios";
 import AppUrl from "../api/AppUrl";
 
 export default class ProductCategoryPage extends Component {
-  constructor({match}) {
+  constructor({ match }) {
     super();
 
     this.state = {
@@ -19,7 +19,7 @@ export default class ProductCategoryPage extends Component {
 
   componentDidMount() {
     window.scroll(0, 0);
-    
+
     axios.get(AppUrl.ProductListByCategory(this.state.Category)).then(response => {
       this.setState({
         ProductData: response.data
@@ -29,22 +29,25 @@ export default class ProductCategoryPage extends Component {
 
   render() {
     return (
-        <Fragment>
+      <Fragment>
         <div className="Desktop">
-          <NavMenuDesktop />          
+          <NavMenuDesktop />
         </div>
         <div className="Mobile">
-          <NavMenuMobile />          
+          <NavMenuMobile />
         </div>
 
-        <Category Category={this.state.Category} ProductData={this.state.ProductData} />
-        
+        <Category
+          Category={this.state.Category}
+          ProductData={this.state.ProductData}
+        />
+
         <div className="Desktop">
           <FooterDesktop />
         </div>
         <div className="Mobile">
           <FooterMobile />
-        </div>               
+        </div>
       </Fragment>
     )
   }

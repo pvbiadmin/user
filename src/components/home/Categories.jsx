@@ -32,7 +32,7 @@ export default class Categories extends Component {
     const MyView = CatList.map((CatList, i) => {
       return (
         <Col className="p-0" key={i.toString()} xl={2} lg={2} md={2} sm={6} xs={6}>
-          <Link to={"/productcategory/" + CatList.category_name}>
+          <Link className="text-link" to={"/productcategory/" + CatList.category_name}>
             <Card className="h-100 w-100 text-center">
               <Card.Body>
                 <img className="center" src={CatList.category_image} alt="" />

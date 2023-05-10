@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import AppURL from "../../api/AppUrl";
+import AppUrl from "../../api/AppUrl";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default class MegaMenuAll extends Component {
-  constructor(){
+  constructor() {
     super();
 
     this.state = {
@@ -12,8 +12,8 @@ export default class MegaMenuAll extends Component {
     }
   }
 
-  componentDidMount(){
-    axios.get(AppURL.AllCategoryDetails).then(response => { 
+  componentDidMount() {
+    axios.get(AppUrl.AllCategoryDetails).then(response => {
       this.setState({
         MenuData: response.data
       });
@@ -44,27 +44,27 @@ export default class MegaMenuAll extends Component {
           <div className="panelAll">
             <ul>
               {
-                (CatList.subcategory_name).map((SubList, i)=>{
+                (CatList.subcategory_name).map((SubList, i) => {
                   return (
                     <li key={i.toString()}>
-                      <Link 
-                        to={"productsubcategory/" + CatList.category_name + "/" + SubList.subcategory_name} 
-                        className="accordionItem" 
+                      <Link
+                        to={"/productsubcategory/" + CatList.category_name + "/" + SubList.subcategory_name}
+                        className="accordionItem"
                       >
                         {SubList.subcategory_name}
                       </Link>
                     </li>
                   )
-                })    
+                })
               }
             </ul>
-          </div> 
-        </div>)
-      }
+          </div>
+        </div >)
+    }
     );
 
     return (
-      <div className="accordionMenuDivAll">
+      <div className="accordionMenuDivAll" >
         <div className="accordionMenuDivInsideAll">
           {MyView}
         </div>

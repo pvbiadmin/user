@@ -17,4 +17,8 @@ export default class AppUrl {
   static ProductListBySubcategory(category, subcategory) {
     return this.BaseUrl + "/productlistbysubcategory/" + category + "/" + subcategory;
   }
+
+  static ProductDetails(id) {
+    return this.BaseUrl + "/productdetails/" + id;
+  }
 }
