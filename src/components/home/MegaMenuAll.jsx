@@ -42,7 +42,7 @@ export default class MegaMenuAll extends Component {
             <img className="accordionMenuIconAll" src={CatList.category_image} alt="" />&nbsp;{CatList.category_name}
           </button>
           <div className="panelAll">
-            <ul>
+            <ul style={{ listStyle: "none" }}>
               {
                 (CatList.subcategory_name).map((SubList, i) => {
                   return (
