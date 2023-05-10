@@ -5,6 +5,7 @@ import CartPage from "../pages/CartPage";
 import CompanyProfilePage from "../pages/CompanyProfilePage";
 import ContactPage from "../pages/ContactPage";
 import FavoritePage from "../pages/FavoritePage";
+import ForgetPasswordPage from "../pages/ForgetPasswordPage";
 import HomePage from "../pages/HomePage";
 import NotificationPage from "../pages/NotificationPage";
 import PrivacyPage from "../pages/PrivacyPage";
@@ -14,6 +15,7 @@ import ProductSubcategoryPage from "../pages/ProductSubcategoryPage";
 import PurchasePage from "../pages/PurchasePage";
 import RefundPage from "../pages/RefundPage";
 import RegisterPage from "../pages/RegisterPage";
+import ResetPasswordPage from "../pages/ResetPasswordPage";
 import SearchPage from "../pages/SearchPage";
 import UserLoginPage from "../pages/UserLoginPage";
 
@@ -25,6 +27,8 @@ export default class AppRoute extends Component {
           <Route exact path="/" render={(props) => <HomePage {...props} key={Date.now()} />} />
           <Route exact path="/login" render={(props) => <UserLoginPage {...props} key={Date.now()} />} />
           <Route exact path="/register" render={(props) => <RegisterPage {...props} key={Date.now()} />} />
+          <Route exact path="/forget" render={(props) => <ForgetPasswordPage {...props} key={Date.now()} />} />
+          <Route exact path="/reset/:id" render={(props) => <ResetPasswordPage {...props} key={Date.now()} />} />
           <Route exact path="/contact" render={(props) => <ContactPage {...props} key={Date.now()} />} />
           <Route exact path="/purchase" render={(props) => <PurchasePage {...props} key={Date.now()} />} />
           <Route exact path="/privacy" render={(props) => <PrivacyPage {...props} key={Date.now()} />} />

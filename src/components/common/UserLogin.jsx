@@ -19,7 +19,7 @@ export default class UserLogin extends Component {
                     <input className="form-control m-2" type="password" placeholder="Enter Your Password" />
                     <Button className="btn btn-block m-2 site-btn-login">Sign In</Button>
                     <br /><br /><hr />
-                    <p><b>Forgot your password? <Link>Reset Password</Link></b></p>
+                    <p><b>Forgot your password? <Link to="/forget">Reset Password</Link></b></p>
                     <p><b>Don't have an account? <Link to="/register">Register Here</Link></b></p>
                   </Form>
                 </Col>
@@ -30,8 +30,8 @@ export default class UserLogin extends Component {
 
             </Col>
           </Row>
-        </Container>
-      </Fragment>
+        </Container >
+      </Fragment >
     )
   }
 }
