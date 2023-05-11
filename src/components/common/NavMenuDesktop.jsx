@@ -21,6 +21,10 @@ export default class NavMenuDesktop extends Component {
     this.SearchRedirect = this.SearchRedirect.bind(this);
   }
 
+  logout() {
+    localStorage.clear();
+  }
+
   SearchOnChange(event) {
     let SearchKey = event.target.value;
     // alert(SearchKey);
@@ -70,6 +74,54 @@ export default class NavMenuDesktop extends Component {
   }
 
   render() {
+    let buttons;
+
+    if (localStorage.getItem("token")) {
+      buttons = (
+        <div>
+          <Link to="/favorite" className="btn">
+            <i className="h4 fa fa-heart"></i>
+            <sup>
+              <span className="badge text-white bg-danger">3</span>
+            </sup>
+          </Link>
+          <Link to="/notification" className="btn">
+            <i className="h4 fa fa-bell"></i>
+            <sup>
+              <span className="badge text-white bg-danger">5</span>
+            </sup>
+          </Link>
+          <Link to="/cart" className="cart-btn">
+            <i className="fa fa-shopping-cart"></i>{" "}3 Items
+          </Link>
+          <Link to="/profile" className="h4 btn">PROFILE</Link>
+          <Link to="/" onClick={this.logout} className="h4 btn" > LOGOUT</Link>
+        </div >
+      )
+    } else {
+      buttons = (
+        <div>
+          <Link to="/favorite" className="btn">
+            <i className="h4 fa fa-heart"></i>
+            <sup>
+              <span className="badge text-white bg-danger">3</span>
+            </sup>
+          </Link>
+          <Link to="/notification" className="btn">
+            <i className="h4 fa fa-bell"></i>
+            <sup>
+              <span className="badge text-white bg-danger">5</span>
+            </sup>
+          </Link>
+          <Link to="/cart" className="cart-btn">
+            <i className="fa fa-shopping-cart"></i>{" "}3 Items
+          </Link>
+          <Link to="/login" className="h4 btn">LOGIN</Link>
+          <Link to="/register" className="h4 btn">REGISTER</Link>
+        </div>
+      )
+    }
+    //
     return (
       <Fragment>
         <div className="TopSectionDown">
@@ -82,7 +134,6 @@ export default class NavMenuDesktop extends Component {
                     <img className="nav-logo ml-2" src={ImgLogo} alt="logo" />
                   </Link>
                 </Col>
-
                 <Col className="p-1 mt-1" lg={4} md={4} sm={12} xs={12}>
                   <div className="input-group w-100">
                     <input onChange={this.SearchOnChange} className="form-control" type="text" />
@@ -91,25 +142,8 @@ export default class NavMenuDesktop extends Component {
                     </Button>
                   </div>
                 </Col>
-
                 <Col className="p-1 mt-1" lg={4} md={4} sm={12} xs={12}>
-                  <Link to="/favorite" className="btn">
-                    <i className="h4 fa fa-heart"></i>
-                    <sup>
-                      <span className="badge text-white bg-danger">3</span>
-                    </sup>
-                  </Link>
-                  <Link to="/notification" className="btn">
-                    <i className="h4 fa fa-bell"></i>
-                    <sup>
-                      <span className="badge text-white bg-danger">5</span>
-                    </sup>
-                  </Link>
-                  <Link to="/login" className="h4 btn">LOGIN</Link>
-                  <Link to="/register" className="h4 btn">REGISTER</Link>
-                  <Link to="/cart" className="cart-btn">
-                    <i className="fa fa-shopping-cart"></i>{" "}3 Items
-                  </Link>
+                  {buttons}
                 </Col>
               </Row>
               {this.SearchRedirect()}
@@ -119,7 +153,6 @@ export default class NavMenuDesktop extends Component {
         <div className={this.state.SideNavState}>
           <MegaMenuAll />
         </div>
-
         <div
           onClick={this.ContentOverlayClickHandler}
           className={this.state.ContentOverState}
