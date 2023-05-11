@@ -4,6 +4,8 @@ import Login from '../../assets/images/login.png'
 import { Link, Redirect } from 'react-router-dom'
 import AppURL from '../../api/AppUrl';
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class UserLogin extends Component {
 
@@ -28,11 +30,19 @@ class UserLogin extends Component {
     axios.post(AppURL.UserLogin, data).then(response => {
 
       localStorage.setItem('token', response.data.token);
-      this.setState({ loggedIn: true });
+
+      this.setState({
+        loggedIn: true,
+        message: response.data.message
+      });
+
       this.props.setUser(response.data.user);
-
-    }).catch();
-
+    }).catch(error => {
+      this.setState({ message: error.response.data.message })
+      toast.error(this.state.message, {
+        position: "top-right"
+      });
+    });
   }
 
   render() {
@@ -77,18 +87,13 @@ class UserLogin extends Component {
                 </Col>
 
                 <Col className="p-0 Desktop m-0" md={6} lg={6} sm={6} xs={6}>
-                  <img className="onboardBanner" src={Login} />
+                  <img className="onboardBanner" src={Login} alt="" />
                 </Col>
               </Row>
-
-
-
-
-
-
             </Col>
           </Row>
         </Container>
+        <ToastContainer />
       </Fragment>
     )
   }
