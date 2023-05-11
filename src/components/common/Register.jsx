@@ -74,19 +74,20 @@ class Register extends Component {
 										<input className="form-control m-2" type="password" placeholder="Confirm Your Password" onChange={(e) => { this.setState({ password_confirmation: e.target.value }) }} />
 
 
-										<Button type="submit" className="btn btn-block m-2 site-btn-login"> Sign Up </Button>
+										<Button type="submit" className="btn btn-block m-2 site-btn-login"> Sing Up </Button>
 										<br></br> <br></br>
 										<hr />
-										<p> <b> Forget My Password? </b><Link to="/forget"><b> Forgot Password </b> </Link> </p>
+										<p> <b> Forget My Password? </b><Link to="/forget"><b> Froget Password </b> </Link> </p>
 
 										<p> <b> Already Have An Account ? </b><Link to="/login"><b> Login </b> </Link> </p>
 
 									</Form>
 
+
 								</Col>
 
 								<Col className="p-0 Desktop m-0" md={6} lg={6} sm={6} xs={6}>
-									<img className="onboardBanner" src={Login} alt="" />
+									<img className="onboardBanner" src={Login} />
 								</Col>
 							</Row>
 

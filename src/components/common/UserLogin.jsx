@@ -2,10 +2,10 @@ import React, { Component, Fragment } from 'react'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import Login from '../../assets/images/login.png'
 import { Link, Redirect } from 'react-router-dom'
-import AppUrl from '../../api/AppUrl';
+import AppURL from '../../api/AppUrl';
 import axios from 'axios'
 
-export default class UserLogin extends Component {
+class UserLogin extends Component {
 
   constructor() {
     super();
@@ -25,15 +25,17 @@ export default class UserLogin extends Component {
       password: this.state.password
     }
 
-    axios.post(AppUrl.UserLogin, data).then(response => {
+    axios.post(AppURL.UserLogin, data).then(response => {
 
       localStorage.setItem('token', response.data.token);
-      this.setState({ loggedIn: true })
+      this.setState({ loggedIn: true });
       this.props.setUser(response.data.user);
 
     }).catch();
 
   }
+
+
 
   render() {
 
@@ -45,6 +47,7 @@ export default class UserLogin extends Component {
     if (localStorage.getItem('token')) {
       return <Redirect to="/profile" />
     }
+
 
     return (
       <Fragment>
@@ -62,11 +65,11 @@ export default class UserLogin extends Component {
                     <input className="form-control m-2" type="password" placeholder="Enter Your Password" onChange={(e) => { this.setState({ password: e.target.value }) }} />
 
 
-                    <Button type="submit" className="btn btn-block m-2 site-btn-login"> Sign In </Button>
+                    <Button type="submit" className="btn btn-block m-2 site-btn-login"> Login </Button>
 
                     <br></br> <br></br>
                     <hr />
-                    <p> <b> Forget My Password? </b><Link to="/forget"><b> Froget Password </b> </Link> </p>
+                    <p> <b> Forget Your Password? </b><Link to="/forget"><b> Forgot Password </b> </Link> </p>
 
                     <p> <b> Don't Have An Account ? </b><Link to="/register"><b> Register </b> </Link> </p>
 
@@ -76,7 +79,7 @@ export default class UserLogin extends Component {
                 </Col>
 
                 <Col className="p-0 Desktop m-0" md={6} lg={6} sm={6} xs={6}>
-                  <img className="onboardBanner" src={Login} alt="" />
+                  <img className="onboardBanner" src={Login} />
                 </Col>
               </Row>
 
@@ -92,3 +95,5 @@ export default class UserLogin extends Component {
     )
   }
 }
+
+export default UserLogin
