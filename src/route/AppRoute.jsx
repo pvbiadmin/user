@@ -1,5 +1,8 @@
+import axios from "axios";
 import React, { Component, Fragment } from "react";
 import { Route, Switch } from "react-router";
+import AppUrl from "../api/AppUrl";
+import NavMenuDesktop from "../components/common/NavMenuDesktop";
 import AboutPage from "../pages/AboutPage";
 import CartPage from "../pages/CartPage";
 import CompanyProfilePage from "../pages/CompanyProfilePage";
@@ -21,9 +24,29 @@ import SearchPage from "../pages/SearchPage";
 import UserLoginPage from "../pages/UserLoginPage";
 
 export default class AppRoute extends Component {
+  constructor() {
+    super();
+    this.state = {
+      user: {}
+    }
+  }
+
+  componentDidMount() {
+    axios.get(AppUrl.UserData).then(response => {
+      this.setUser(response.data)
+    }).catch();
+  }
+
+  setUser(user) {
+    this.setState({
+      user: user
+    })
+  }
+
   render() {
     return (
       <Fragment>
+        <NavMenuDesktop user={this.state.user} setUser={this.setUser} />
         <Switch>
           <Route exact path="/" render={(props) => <HomePage {...props} key={Date.now()} />} />
           <Route exact path="/login" render={(props) => <UserLoginPage {...props} key={Date.now()} />} />
@@ -43,7 +66,7 @@ export default class AppRoute extends Component {
           <Route exact path="/productcategory/:category" render={(props) => <ProductCategoryPage {...props} key={Date.now()} />} />
           <Route exact path="/productsubcategory/:category/:subcategory" render={(props) => <ProductSubcategoryPage {...props} key={Date.now()} />} />
           <Route exact path="/productbysearch/:searchkey" render={(props) => <SearchPage {...props} key={Date.now()} />} />
-          <Route exact path="/profile" render={(props) => <ProfilePage {...props} key={Date.now()} />} />
+          <Route exact path="/profile" render={(props) => <ProfilePage user={this.state.user} setUser={this.setUser} {...props} key={Date.now()} />} />
         </Switch>
       </Fragment>
     )

@@ -7,6 +7,7 @@ export default class AppUrl {
   static AllSlider = this.BaseUrl + "/allslider";
   static NotificationHistory = this.BaseUrl + "/notification";
   static UserLogin = this.BaseUrl + "/login";
+  static UserData = this.BaseUrl + "/user";
 
   static ProductListByRemarks(remarks) {
     return this.BaseUrl + "/productlistbyremarks/" + remarks;
