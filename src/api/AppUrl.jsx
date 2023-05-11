@@ -9,7 +9,7 @@ export default class AppUrl {
   static UserLogin = this.BaseUrl + "/login";
   static UserData = this.BaseUrl + "/user";
   static UserRegister = this.BaseUrl + "/register";
-
+  static UserForgetPassword = this.BaseUrl + "/forgetpassword";
 
   static ProductListByRemarks(remarks) {
     return this.BaseUrl + "/productlistbyremarks/" + remarks;

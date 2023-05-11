@@ -35,8 +35,6 @@ class UserLogin extends Component {
 
   }
 
-
-
   render() {
 
     /// After Login Redirect to Profile Page 
