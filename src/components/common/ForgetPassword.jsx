@@ -3,6 +3,8 @@ import React, { Component, Fragment } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import AppUrl from "../../api/AppUrl";
 import ImgForget from "../../assets/images/forget.jpg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default class ForgetPassword extends Component {
   constructor() {
@@ -20,11 +22,24 @@ export default class ForgetPassword extends Component {
     }
 
     axios.post(AppUrl.UserForgetPassword, data).then(response => {
+      // console.log(response);
+      this.setState({
+        message: response.data.message
+      })
 
-      console.log(response);
-
+      toast.success(this.state.message, {
+        position: "top-right"
+      });
     }).catch(error => {
-      console.log(error);
+      // console.log(error);
+
+      this.setState({
+        message: error.response.data.message
+      })
+
+      toast.error(this.state.message, {
+        position: "top-right"
+      });
     });
 
   }
@@ -53,6 +68,7 @@ export default class ForgetPassword extends Component {
             </Col>
           </Row>
         </Container >
+        <ToastContainer />
       </Fragment >
     )
   }
