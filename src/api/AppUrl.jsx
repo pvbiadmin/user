@@ -8,6 +8,8 @@ export default class AppUrl {
   static NotificationHistory = this.BaseUrl + "/notification";
   static UserLogin = this.BaseUrl + "/login";
   static UserData = this.BaseUrl + "/user";
+  static UserRegister = this.BaseUrl + "/register";
+
 
   static ProductListByRemarks(remarks) {
     return this.BaseUrl + "/productlistbyremarks/" + remarks;

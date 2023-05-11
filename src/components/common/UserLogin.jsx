@@ -35,8 +35,6 @@ export default class UserLogin extends Component {
 
   }
 
-
-
   render() {
 
     /// After Login Redirect to Profile Page 
@@ -47,7 +45,6 @@ export default class UserLogin extends Component {
     if (localStorage.getItem('token')) {
       return <Redirect to="/profile" />
     }
-
 
     return (
       <Fragment>
