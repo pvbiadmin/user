@@ -2,20 +2,21 @@ import React, { Component, Fragment } from "react";
 import { Breadcrumb, Col, Container, Row } from "react-bootstrap";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
-// import Product1 from "../../assets/images/product/product1.png";
-// import Product2 from "../../assets/images/product/product2.png";
-// import Product3 from "../../assets/images/product/product3.png";
-// import Product4 from "../../assets/images/product/product4.png";
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
+import InnerImageZoom from 'react-inner-image-zoom';
 
 export default class ProductDetails extends Component {
-  // constructor() {
-  //   super();
-  // }
+  constructor() {
+    super();
 
-  imgOnclick(event) {
-    let imgSrc = event.target.getAttribute("src");
-    let previewImg = document.getElementById("previewImg");
-    ReactDOM.findDOMNode(previewImg).setAttribute("src", imgSrc);
+    this.state = {
+      previewImg: "0"
+    }
+  }
+
+  imgOnClick(event) {
+    let imgSrc = event.target.getAttribute('src');
+    this.setState({ previewImg: imgSrc })
   }
 
   priceOption(price, specialPrice) {
@@ -53,6 +54,12 @@ export default class ProductDetails extends Component {
     let longDescription = productData["productDetails"][0]["long_description"];
     let color = productData["productDetails"][0]["color"];
     let size = productData["productDetails"][0]["size"];
+
+    if (this.state.previewImg === "0") {
+      this.setState({
+        previewImg: image
+      });
+    }
 
     let colorDiv = "d-none";
     let sizeDiv = "d-none";
@@ -106,22 +113,29 @@ export default class ProductDetails extends Component {
               <Row>
                 <Col className="p-3" md={6} lg={6} sm={12} xs={12}>
                   <div className="div-big-img">
-                    <img id="previewImg" className=" big-image" src={imageOne} alt="" />
+                    <div className="detailimage">
+                      <InnerImageZoom
+                        zoomScale={1.8}
+                        zoomType="hover"
+                        zoomSrc={this.state.previewImg}
+                        src={this.state.previewImg}
+                      />
+                    </div>
                   </div>
 
                   <Container className="my-3">
                     <Row>
                       <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
-                        <img onClick={this.imgOnclick} className="w-100 product-sm-img" src={imageOne} alt="" />
+                        <img onClick={event => { this.imgOnClick(event) }} className="w-100 product-sm-img" src={imageOne} alt="" />
                       </Col>
                       <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
-                        <img onClick={this.imgOnclick} className="w-100 product-sm-img" src={imageTwo} alt="" />
+                        <img onClick={event => { this.imgOnClick(event) }} className="w-100 product-sm-img" src={imageTwo} alt="" />
                       </Col>
                       <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
-                        <img onClick={this.imgOnclick} className="w-100 product-sm-img" src={imageThree} alt="" />
+                        <img onClick={event => { this.imgOnClick(event) }} className="w-100 product-sm-img" src={imageThree} alt="" />
                       </Col>
                       <Col className="p-0 m-0" md={3} lg={3} sm={3} xs={3}>
-                        <img onClick={this.imgOnclick} className="w-100 product-sm-img" src={imageFour} alt="" />
+                        <img onClick={event => { this.imgOnClick(event) }} className="w-100 product-sm-img" src={imageFour} alt="" />
                       </Col>
                     </Row>
                   </Container>

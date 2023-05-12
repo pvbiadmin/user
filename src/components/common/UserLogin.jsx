@@ -56,7 +56,6 @@ class UserLogin extends Component {
       return <Redirect to="/profile" />
     }
 
-
     return (
       <Fragment>
         <Container>
