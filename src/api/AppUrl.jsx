@@ -35,4 +35,8 @@ export default class AppUrl {
   static SimilarProduct(code) {
     return this.BaseUrl + "/similar/" + code;
   }
+
+  static ReviewList(code) {
+    return this.BaseUrl + "/reviewlist/" + code;
+  }
 }
