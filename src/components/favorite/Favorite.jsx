@@ -42,8 +42,12 @@ export default class Favorite extends Component {
     let product_code = event.target.getAttribute("data-code");
     let email = this.props.user.email;
     axios.get(AppUrl.FavouriteRemove(product_code, email)).then(response => {
-      cogoToast.success("Item Removed From Favorites", { position: 'top-right' });
-      this.setState({ PageRefreshStatus: true });
+      if (response.data === 1) {
+        cogoToast.success("Item Removed From Favorites", { position: 'top-right' });
+        this.setState({ PageRefreshStatus: true });
+      } else {
+        cogoToast.error("Your Request is not done, try again", { position: 'top-right' });
+      }
     }).catch(() => {
       cogoToast.error("Your Request is not done, try again", { position: 'top-right' });
     });

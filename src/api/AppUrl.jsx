@@ -60,4 +60,8 @@ export default class AppUrl {
   static CartList(email) {
     return this.BaseUrl + "/cartlist/" + email;
   }
+
+  static RemoveCartList(id) {
+    return this.BaseUrl + "/removecartlist/" + id;
+  }
 }
