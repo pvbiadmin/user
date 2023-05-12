@@ -115,6 +115,7 @@ export default class ProductDetails extends Component {
                   <div className="div-big-img">
                     <div className="detailimage">
                       <InnerImageZoom
+                        className="detailimage"
                         zoomScale={1.8}
                         zoomType="hover"
                         zoomSrc={this.state.previewImg}

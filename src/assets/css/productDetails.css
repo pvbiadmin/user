@@ -40,7 +40,7 @@
 }
 
 .detailimage{    
-    max-width: 60%;
+    /* max-width: 60%; */
     height: 499px;
-    object-fit: contain;
+    width: auto;
  }
