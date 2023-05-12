@@ -31,4 +31,8 @@ export default class AppUrl {
   static ProductBySearch(searchKey) {
     return this.BaseUrl + "/search/" + searchKey;
   }
+
+  static SimilarProduct(code) {
+    return this.BaseUrl + "/similar/" + code;
+  }
 }

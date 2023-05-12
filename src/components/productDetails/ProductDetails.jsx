@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { Breadcrumb, Col, Container, Row } from "react-bootstrap";
-import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import InnerImageZoom from 'react-inner-image-zoom';
+import SuggestedProducts from "./SuggestedProducts";
 
 export default class ProductDetails extends Component {
   constructor() {
@@ -241,8 +241,11 @@ export default class ProductDetails extends Component {
               </Row>
             </Col>
           </Row>
-        </Container >
-      </Fragment >
+        </Container>
+
+        <SuggestedProducts subcategory={subcategory} />
+
+      </Fragment>
     )
   }
 }
