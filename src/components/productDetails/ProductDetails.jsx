@@ -22,7 +22,8 @@ export default class ProductDetails extends Component {
       quantity: "",
       productCode: null,
       addToCart: "Add To Cart",
-      PageRefreshStatus: false
+      PageRefreshStatus: false,
+      addToFav: "Favorites",
     }
   }
 
@@ -77,6 +78,32 @@ export default class ProductDetails extends Component {
       }).catch(() => {
         cogoToast.error("Your Request is not done! Try Again", { position: 'top-right' });
         this.setState({ addToCart: "Add To Cart" });
+      });
+    }
+  }
+
+  addToFav = () => {
+    let productCode = this.state.productCode;
+    let email = this.props.user.email;
+
+    if (!localStorage.getItem("token")) {
+      cogoToast.warn('You have to Login First', { position: 'top-right' });
+    } else {
+      this.setState({ addToFav: "Adding..." });
+
+      axios.get(AppUrl.AddFavourite(productCode, email)).then(response => {
+        if (response.data === 1) {
+          cogoToast.success("Product is Added to Favorites", { position: 'top-right' });
+          this.setState({ addToFav: "Favorite" });
+        }
+        else {
+          cogoToast.error("Your Request is not done! Try Again", { position: 'top-right' });
+          this.setState({ addToCart: "Favorite" });
+        }
+
+      }).catch(() => {
+        cogoToast.error("Your Request is not done! Try Again", { position: 'top-right' });
+        this.setState({ addToCart: "Favorite" });
       });
     }
   }
@@ -329,8 +356,10 @@ export default class ProductDetails extends Component {
 
                   <div className="input-group mt-3">
                     <button onClick={this.addToCart} className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i> {this.state.addToCart}</button>
+
                     <button className="btn btn-primary m-1"> <i className="fa fa-car"></i> Order Now</button>
-                    <button className="btn btn-primary m-1"> <i className="fa fa-heart"></i> Favorite</button>
+
+                    <button onClick={this.addToFav} className="btn btn-primary m-1"> <i className="fa fa-heart"></i> {this.state.addToFav}</button>
                   </div>
                 </Col>
               </Row>

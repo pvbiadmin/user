@@ -44,4 +44,8 @@ export default class AppUrl {
   static CartCount(productCode) {
     return this.BaseUrl + "/cartcount/" + productCode;
   }
+
+  static AddFavourite(product_code, email) {
+    return this.BaseUrl + "/favourite/" + product_code + "/" + email;
+  }
 }
