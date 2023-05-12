@@ -1,6 +1,8 @@
 import axios from "axios";
+import cogoToast from "cogo-toast";
 import React, { Component, Fragment } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { Redirect } from "react-router";
 import AppUrl from "../../api/AppUrl";
 
 export default class Favorite extends Component {
@@ -10,11 +12,13 @@ export default class Favorite extends Component {
     this.state = {
       productData: [],
       isLoading: "",
-      mainDiv: "d-none"
+      mainDiv: "d-none",
+      PageRefreshStatus: false
     }
   }
 
   componentDidMount() {
+    window.scroll(0, 0);
     axios.get(AppUrl.FavouriteList(this.props.user.email)).then(response => {
       this.setState({
         productData: response.data,
@@ -24,7 +28,32 @@ export default class Favorite extends Component {
     }).catch();
   }
 
+  PageRefresh = () => {
+    if (this.state.PageRefreshStatus === true) {
+      let URL = window.location;
+
+      return (
+        <Redirect to={URL} />
+      )
+    }
+  }
+
+  removeItem = event => {
+    let product_code = event.target.getAttribute("data-code");
+    let email = this.props.user.email;
+    axios.get(AppUrl.FavouriteRemove(product_code, email)).then(response => {
+      cogoToast.success("Item Removed From Favorites", { position: 'top-right' });
+      this.setState({ PageRefreshStatus: true });
+    }).catch(() => {
+      cogoToast.error("Your Request is not done, try again", { position: 'top-right' });
+    });
+  }
+
   render() {
+    if (!localStorage.getItem('token')) {
+      return <Redirect to="/login" />
+    }
+
     const favoriteList = this.state.productData;
 
     const myView = favoriteList.map((favorite, i) => {
@@ -38,10 +67,10 @@ export default class Favorite extends Component {
             />
             <Card.Body>
               <p className="product-name-on-card">{favorite.product_name}</p>
-              <Button className="btn btn-sm"><i className="fa fa-trash-alt"></i> Remove</Button>
+              <Button onClick={this.removeItem} data-code={favorite.product_code} className="btn btn-sm" > <i className="fa fa-trash-alt"></i> Remove</Button>
             </Card.Body>
           </Card>
-        </Col>
+        </Col >
       )
     });
 
@@ -56,7 +85,8 @@ export default class Favorite extends Component {
             {myView}
           </Row>
         </Container>
-      </Fragment>
+        {this.PageRefresh()}
+      </Fragment >
     )
   }
 }

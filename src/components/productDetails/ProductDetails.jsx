@@ -68,7 +68,7 @@ export default class ProductDetails extends Component {
         if (response.data === 1) {
           cogoToast.success("Product Added Successfully", { position: 'top-right' });
           this.setState({ addToCart: "Add To Cart" });
-          this.setState({ PageRefreshStatus: true })
+          this.setState({ PageRefreshStatus: true });
         }
         else {
           cogoToast.error("Your Request is not done! Try Again", { position: 'top-right' });
