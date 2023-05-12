@@ -33,6 +33,8 @@ export default class ProductDetailsPage extends Component {
   }
 
   render() {
+    const user = this.props.user;
+
     if (this.state.mainDiv === "d-none") {
       return (
         <Fragment>
@@ -63,7 +65,7 @@ export default class ProductDetailsPage extends Component {
             <NavMenuMobile />
           </div>
 
-          <ProductDetails ProductData={this.state.ProductData} />
+          <ProductDetails user={user} ProductData={this.state.ProductData} />
 
           <div className="Desktop">
             <FooterDesktop />

@@ -5,29 +5,109 @@ import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import InnerImageZoom from 'react-inner-image-zoom';
 import SuggestedProducts from "./SuggestedProducts";
 import ReviewList from "./ReviewList";
+import cogoToast from "cogo-toast";
+import axios from "axios";
+import AppUrl from "../../api/AppUrl";
 
 export default class ProductDetails extends Component {
   constructor() {
     super();
 
     this.state = {
-      previewImg: "0"
+      previewImg: "0",
+      isSize: null,
+      isColor: null,
+      color: "",
+      size: "",
+      quantity: "",
+      productCode: null,
+      addToCart: "Add To Cart"
     }
   }
 
-  imgOnClick(event) {
+  imgOnClick = event => {
     let imgSrc = event.target.getAttribute('src');
     this.setState({ previewImg: imgSrc })
   }
 
-  priceOption(price, specialPrice) {
+  addToCart = () => {
+    let isSize = this.state.isSize;
+    let isColor = this.state.isColor;
+    let color = this.state.color;
+    let size = this.state.size;
+    let quantity = this.state.quantity;
+    let productCode = this.state.productCode;
+    let email = this.props.user.email;
+
+    if (isColor === "YES" && color.length === 0) {
+      cogoToast.error('Please Select Color', { position: 'top-right' });
+    }
+    else if (isSize === "YES" && size.length === 0) {
+      cogoToast.error('Please Select Size', { position: 'top-right' });
+    }
+    else if (quantity.length === 0) {
+      cogoToast.error('Please Select Quantity', { position: 'top-right' });
+    }
+    else if (!localStorage.getItem('token')) {
+      cogoToast.warn('You have to Login First', { position: 'top-right' });
+    }
+    else {
+      this.setState({ addToCart: "Adding..." });
+
+      let MyFormData = new FormData();
+
+      MyFormData.append("color", color);
+      MyFormData.append("size", size);
+      MyFormData.append("quantity", quantity);
+      MyFormData.append("product_code", productCode);
+      MyFormData.append("email", email);
+
+      axios.post(AppUrl.AddToCart, MyFormData).then(response => {
+        if (response.data === 1) {
+          cogoToast.success("Product Added Successfully", { position: 'top-right' });
+          this.setState({ addToCart: "Add To Cart" })
+        }
+        else {
+          cogoToast.error("Your Request is not done! Try Again", { position: 'top-right' });
+          this.setState({ addToCart: "Add To Cart" })
+        }
+
+      }).catch(() => {
+        cogoToast.error("Your Request is not done! Try Again", { position: 'top-right' });
+        this.setState({ addToCart: "Add To Cart" })
+      });
+    }
+  }
+
+  colorOnChange = event => {
+    let color = event.target.value;
+    // alert(color);
+    // cogoToast.error("Please select any color", {
+    //   position: "top-right"
+    // });
+    this.setState({ color: color });
+  }
+
+  sizeOnChange = event => {
+    let size = event.target.value;
+    // alert(size);
+    this.setState({ size: size });
+  }
+
+  quantityOnChange = event => {
+    let quantity = event.target.value;
+    // alert(quantity);
+    this.setState({ quantity: quantity });
+  }
+
+  priceOption = (price, specialPrice) => {
     if (specialPrice === "na") {
       return (
         <p className="product-price-on-card">Price: ${price}</p>
       )
     } else {
       return (
-        <p className="product-price-on-card">Price: <strike className="text-secondary">${price}</strike> ${specialPrice}</p >
+        <p className="product-price-on-card">Price: <strike className="text-secondary">${price}</strike> ${specialPrice}</p>
       )
     }
   }
@@ -81,6 +161,26 @@ export default class ProductDetails extends Component {
       colorDiv = "";
     } else {
       colorDiv = "d-none";
+    }
+
+    if (this.state.isSize === null) {
+      if (size !== "na") {
+        this.setState({ isSize: "YES" });
+      } else {
+        this.setState({ isSize: "NO" });
+      }
+    }
+
+    if (this.state.isColor === null) {
+      if (color !== "na") {
+        this.setState({ isColor: "YES" });
+      } else {
+        this.setState({ isColor: "NO" });
+      }
+    }
+
+    if (this.state.productCode === null) {
+      this.setState({ productCode: productCode });
     }
 
     if (size !== "na") {
@@ -158,7 +258,7 @@ export default class ProductDetails extends Component {
 
                   <div className={colorDiv}>
                     <h6 className="mt-2"><b>Colors</b></h6>
-                    <select className="form-control form-select">
+                    <select onChange={event => this.colorOnChange(event)} className="form-control form-select" >
                       <option>Choose color</option>
                       {colorOptions}
                     </select>
@@ -166,7 +266,7 @@ export default class ProductDetails extends Component {
 
                   <div className={sizeDiv}>
                     <h6 className="mt-2"><b>Sizes</b></h6>
-                    <select className="form-control form-select">
+                    <select onChange={event => this.sizeOnChange(event)} className="form-control form-select">
                       <option>Choose size</option>
                       {sizeOptions}
                     </select>
@@ -205,7 +305,7 @@ export default class ProductDetails extends Component {
                   </div> */}
 
                   <h6 className="mt-2"><b>Quantity</b></h6>
-                  <input className="form-control text-center w-50" placeholder="Choose quantity" type="number" min="0" />
+                  <input onChange={event => this.quantityOnChange(event)} className="form-control text-center w-50" placeholder="Choose quantity" type="number" min="0" />
 
                   {/* <div className="">
                     <h6 className="mt-2"><b>Quantity</b></h6>
@@ -216,7 +316,7 @@ export default class ProductDetails extends Component {
                   </div> */}
 
                   <div className="input-group mt-3">
-                    <button className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i> Add To Cart</button>
+                    <button onClick={this.addToCart} className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i> {this.state.addToCart}</button>
                     <button className="btn btn-primary m-1"> <i className="fa fa-car"></i> Order Now</button>
                     <button className="btn btn-primary m-1"> <i className="fa fa-heart"></i> Favorite</button>
                   </div>
@@ -237,11 +337,11 @@ export default class ProductDetails extends Component {
               </Row>
             </Col>
           </Row>
-        </Container>
+        </Container >
 
         <SuggestedProducts subcategory={subcategory} />
 
-      </Fragment>
+      </Fragment >
     )
   }
 }

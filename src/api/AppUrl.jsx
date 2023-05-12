@@ -11,6 +11,7 @@ export default class AppUrl {
   static UserRegister = this.BaseUrl + "/register";
   static UserForgetPassword = this.BaseUrl + "/forgetpassword";
   static UserResetPassword = this.BaseUrl + "/resetpassword";
+  static AddToCart = this.BaseUrl + "/addtocart";
 
   static ProductListByRemarks(remarks) {
     return this.BaseUrl + "/productlistbyremarks/" + remarks;
