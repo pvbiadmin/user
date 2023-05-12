@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Breadcrumb, Col, Container, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import InnerImageZoom from 'react-inner-image-zoom';
 import SuggestedProducts from "./SuggestedProducts";
@@ -21,7 +21,8 @@ export default class ProductDetails extends Component {
       size: "",
       quantity: "",
       productCode: null,
-      addToCart: "Add To Cart"
+      addToCart: "Add To Cart",
+      PageRefreshStatus: false
     }
   }
 
@@ -65,16 +66,17 @@ export default class ProductDetails extends Component {
       axios.post(AppUrl.AddToCart, MyFormData).then(response => {
         if (response.data === 1) {
           cogoToast.success("Product Added Successfully", { position: 'top-right' });
-          this.setState({ addToCart: "Add To Cart" })
+          this.setState({ addToCart: "Add To Cart" });
+          this.setState({ PageRefreshStatus: true })
         }
         else {
           cogoToast.error("Your Request is not done! Try Again", { position: 'top-right' });
-          this.setState({ addToCart: "Add To Cart" })
+          this.setState({ addToCart: "Add To Cart" });
         }
 
       }).catch(() => {
         cogoToast.error("Your Request is not done! Try Again", { position: 'top-right' });
-        this.setState({ addToCart: "Add To Cart" })
+        this.setState({ addToCart: "Add To Cart" });
       });
     }
   }
@@ -98,6 +100,16 @@ export default class ProductDetails extends Component {
     let quantity = event.target.value;
     // alert(quantity);
     this.setState({ quantity: quantity });
+  }
+
+  PageRefresh = () => {
+    if (this.state.PageRefreshStatus === true) {
+      let URL = window.location;
+
+      return (
+        <Redirect to={URL} />
+      )
+    }
   }
 
   priceOption = (price, specialPrice) => {
@@ -340,6 +352,8 @@ export default class ProductDetails extends Component {
         </Container >
 
         <SuggestedProducts subcategory={subcategory} />
+
+        {this.PageRefresh()}
 
       </Fragment >
     )

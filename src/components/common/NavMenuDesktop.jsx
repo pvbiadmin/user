@@ -4,6 +4,8 @@ import { Link, Redirect } from "react-router-dom";
 import ImgLogo from "../../assets/images/logo.svg";
 import MegaMenuAll from "../home/MegaMenuAll";
 import ImgBars from "../../assets/images/bars.png";
+import axios from "axios";
+import AppUrl from "../../api/AppUrl";
 
 export default class NavMenuDesktop extends Component {
   constructor() {
@@ -13,12 +15,20 @@ export default class NavMenuDesktop extends Component {
       SideNavState: "sideNavClose",
       ContentOverState: "ContentOverlayClose",
       SearchKey: "",
-      SearchRedirectStatus: false
+      SearchRedirectStatus: false,
+      cartCount: 0
     }
 
     this.SearchOnChange = this.SearchOnChange.bind(this);
     this.SearchOnClick = this.SearchOnClick.bind(this);
     this.SearchRedirect = this.SearchRedirect.bind(this);
+  }
+
+  componentDidMount() {
+    let product_code = this.props.product_code;
+    axios.get(AppUrl.CartCount(product_code)).then(response => {
+      this.setState({ cartCount: response.data })
+    });
   }
 
   logout() {
@@ -92,7 +102,7 @@ export default class NavMenuDesktop extends Component {
             </sup>
           </Link>
           <Link to="/cart" className="cart-btn">
-            <i className="fa fa-shopping-cart"></i>{" "}3 Items
+            <i className="fa fa-shopping-cart"></i>{" "}{this.state.cartCount} Items
           </Link>
           <Link to="/profile" className="h4 btn">PROFILE</Link>
           <Link to="/" onClick={this.logout} className="h4 btn" > LOGOUT</Link>
@@ -114,7 +124,7 @@ export default class NavMenuDesktop extends Component {
             </sup>
           </Link>
           <Link to="/cart" className="cart-btn">
-            <i className="fa fa-shopping-cart"></i>{" "}3 Items
+            <i className="fa fa-shopping-cart"></i>{" "}0 Items
           </Link>
           <Link to="/login" className="h4 btn">LOGIN</Link>
           <Link to="/register" className="h4 btn">REGISTER</Link>

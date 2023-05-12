@@ -40,4 +40,8 @@ export default class AppUrl {
   static ReviewList(code) {
     return this.BaseUrl + "/reviewlist/" + code;
   }
+
+  static CartCount(productCode) {
+    return this.BaseUrl + "/cartcount/" + productCode;
+  }
 }
