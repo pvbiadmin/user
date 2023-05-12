@@ -17,7 +17,7 @@ export default class FeaturedProducts extends Component {
   }
 
   componentDidMount() {
-    axios.get(AppUrl.ProductListByRemarks("featured")).then(response => {
+    axios.get(AppUrl.FavouriteList("featured")).then(response => {
       this.setState({
         productData: response.data,
         isLoading: "d-none",

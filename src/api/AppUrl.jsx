@@ -48,4 +48,8 @@ export default class AppUrl {
   static AddFavourite(product_code, email) {
     return this.BaseUrl + "/favourite/" + product_code + "/" + email;
   }
+
+  static FavouriteList(email) {
+    return this.BaseUrl + "/favouritelist/" + email;
+  }
 }

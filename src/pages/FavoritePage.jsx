@@ -11,23 +11,25 @@ export default class FavoritePage extends Component {
   }
 
   render() {
+    const User = this.props.user;
+
     return (
       <Fragment>
         <div className="Desktop">
-          <NavMenuDesktop />          
+          <NavMenuDesktop />
         </div>
         <div className="Mobile">
-          <NavMenuMobile />          
+          <NavMenuMobile />
         </div>
 
-        <Favorite />
-        
+        <Favorite user={User} />
+
         <div className="Desktop">
           <FooterDesktop />
         </div>
         <div className="Mobile">
           <FooterMobile />
-        </div>               
+        </div>
       </Fragment>
     )
   }
