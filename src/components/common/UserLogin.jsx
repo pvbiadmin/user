@@ -36,11 +36,11 @@ export default class UserLogin extends Component {
 
     /// After Login Redirect to Profile Page 
     if (this.state.loggedIn) {
-      return <Redirect to={'/profile'} />
+      return <Redirect to="/" />
     }
 
     if (localStorage.getItem('token')) {
-      return <Redirect to="/profile" />
+      return <Redirect to="/" />
     }
 
     return (
