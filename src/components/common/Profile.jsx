@@ -17,7 +17,6 @@ class Profile extends Component {
       return <Redirect to="/login" />
     }
 
-
     return (
       <Fragment>
         <h1> User Profile Page </h1>

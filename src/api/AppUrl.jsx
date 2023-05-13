@@ -64,4 +64,12 @@ export default class AppUrl {
   static RemoveCartList(id) {
     return this.BaseUrl + "/removecartlist/" + id;
   }
+
+  static CartItemPlus(id, quantity, price) {
+    return this.BaseUrl + "/cartitemplus/" + id + "/" + quantity + "/" + price;
+  }
+
+  static CartItemMinus(id, quantity, price) {
+    return this.BaseUrl + "/cartitemminus/" + id + "/" + quantity + "/" + price;
+  }
 }

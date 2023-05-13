@@ -3,11 +3,9 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import Login from '../../assets/images/login.png'
 import { Link, Redirect } from 'react-router-dom'
 import AppURL from '../../api/AppUrl';
-import axios from 'axios'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
-class UserLogin extends Component {
+export default class UserLogin extends Component {
 
   constructor() {
     super();
@@ -22,27 +20,16 @@ class UserLogin extends Component {
   // Login Form Submit Method 
   formSubmit = (e) => {
     e.preventDefault();
-    const data = {
+    let data = {
       email: this.state.email,
       password: this.state.password
     }
 
     axios.post(AppURL.UserLogin, data).then(response => {
-
       localStorage.setItem('token', response.data.token);
-
-      this.setState({
-        loggedIn: true,
-        message: response.data.message
-      });
-
+      this.setState({ loggedIn: true })
       this.props.setUser(response.data.user);
-    }).catch(error => {
-      this.setState({ message: error.response.data.message })
-      toast.error(this.state.message, {
-        position: "top-right"
-      });
-    });
+    }).catch();
   }
 
   render() {
@@ -92,10 +79,7 @@ class UserLogin extends Component {
             </Col>
           </Row>
         </Container>
-        <ToastContainer />
       </Fragment>
     )
   }
 }
-
-export default UserLogin
