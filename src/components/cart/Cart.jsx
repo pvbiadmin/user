@@ -83,9 +83,33 @@ export default class Cart extends Component {
     });
   }
 
+  ItemMinus = (id, quantity, price) => {
+    axios.get(AppUrl.CartItemMinus(id, quantity, price)).then(response => {
+      if (response.data === 1) {
+        cogoToast.success("Item Quantity Decreased", { position: 'top-right' });
+        this.setState({ PageRefreshStatus: true })
+      } else {
+        cogoToast.error("Your Request is not done ! Try Aagain", { position: 'top-right' });
+      }
+    }).catch(error => {
+      cogoToast.error("Your Request is not done ! Try Aagain", { position: 'top-right' });
+
+    });
+  }
+
+  cityOnChange = (event) => {
+    let city = event.target.value;
+    this.setState({ city: city });
+  }
+
+  paymentMethodOnChange = (event) => {
+    let payment = event.target.value;
+    this.setState({ payment: payment });
+  }
+
   nameOnChange = (event) => {
     let name = event.target.value;
-    this.setState({ name: name })
+    this.setState({ name: name });
   }
 
   addressOnChange = (event) => {
@@ -107,33 +131,32 @@ export default class Cart extends Component {
       cogoToast.error("Please Select Payment", { position: 'top-right' });
     }
     else if (name.length === 0) {
-      cogoToast.error("Please Select Your Name", { position: 'top-right' });
+      cogoToast.error("Please Specify Your Name", { position: 'top-right' });
     }
     else if (address.length === 0) {
-      cogoToast.error("Please Select Your Address", { position: 'top-right' });
+      cogoToast.error("Please Specify Your Address", { position: 'top-right' });
     }
     else {
       let invoice = new Date().getTime();
-      let MyFromData = new FormData();
+      let MyFormData = new FormData();
 
-      MyFromData.append('city', city)
-      MyFromData.append('payment_method', payment)
-      MyFromData.append('name', name)
-      MyFromData.append('delivery_address', address)
-      MyFromData.append('email', email)
-      MyFromData.append('invoice_no', invoice)
-      MyFromData.append('delivery_charge', "00");
+      MyFormData.append('city', city);
+      MyFormData.append('payment_method', payment);
+      MyFormData.append('name', name);
+      MyFormData.append('delivery_address', address);
+      MyFormData.append('email', email);
+      MyFormData.append('invoice_no', invoice);
+      MyFormData.append('delivery_charge', "00");
 
-      axios.post(AppUrl.CartOrder, MyFromData).then(response => {
-
+      axios.post(AppUrl.CartOrder, MyFormData).then(response => {
         if (response.data === 1) {
           cogoToast.success("Order Request Received", { position: 'top-right' });
-          this.setState({ PageRedirectStatus: true })
+          this.setState({ PageRedirectStatus: true });
         } else {
-          cogoToast.error("Your Request is not done ! Try Aagain", { position: 'top-right' });
+          cogoToast.error("Your Request is not done! Try Again", { position: 'top-right' });
         }
       }).catch(() => {
-        cogoToast.error("Your Request is not done ! Try Aagain", { position: 'top-right' });
+        cogoToast.error("Your Request is not done! Try Again", { position: 'top-right' });
       });
     }
   }
@@ -165,22 +188,16 @@ export default class Cart extends Component {
                 <Col md={3} lg={3} sm={6} xs={6}>
                   <img className="cart-product-img" src={ProductList.image} alt="" />
                 </Col>
-
                 <Col md={6} lg={6} sm={6} xs={6}>
                   <h5 className="product-name">{ProductList.product_name}</h5>
                   <h6> Quantity: {ProductList.quantity} </h6>
                   <p>{ProductList.size} | {ProductList.color}</p>
-                  <h6>Price: {ProductList.unit_price} x {ProductList.quantity} = {ProductList.total_price}$</h6>
+                  <h6>Price: ${ProductList.total_price} {"("}{ProductList.unit_price} * {ProductList.quantity}{")"}</h6>
                 </Col>
-
                 <Col md={3} lg={3} sm={12} xs={12}>
-
                   <Button onClick={() => this.removeItem(ProductList.id)} className="btn mt-2 mx-1 btn-lg site-btn"><i className="fa fa-trash-alt"></i> </Button>
-
                   <Button onClick={() => this.ItemPlus(ProductList.id, ProductList.quantity, ProductList.unit_price)} className="btn mt-2 mx-1 btn-lg site-btn"><i className="fa fa-plus"></i> </Button>
-
                   <Button onClick={() => this.ItemMinus(ProductList.id, ProductList.quantity, ProductList.unit_price)} className="btn mt-2 mx-1 btn-lg site-btn"><i className="fa fa-minus"></i> </Button>
-
                 </Col>
               </Row>
             </Card.Body>
@@ -250,6 +267,7 @@ export default class Cart extends Component {
           </Row>
         </Container>
         {this.PageRefresh()}
+        {this.PageRedirect()}
       </Fragment >
     )
   }

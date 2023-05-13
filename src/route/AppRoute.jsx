@@ -11,6 +11,7 @@ import FavoritePage from "../pages/FavoritePage";
 import ForgetPasswordPage from "../pages/ForgetPasswordPage";
 import HomePage from "../pages/HomePage";
 import NotificationPage from "../pages/NotificationPage";
+import OrderListPage from "../pages/OrderListPage";
 import PrivacyPage from "../pages/PrivacyPage";
 import ProductCategoryPage from "../pages/ProductCategoryPage";
 import ProductDetailsPage from "../pages/ProductDetailsPage";
@@ -67,6 +68,7 @@ export default class AppRoute extends Component {
           <Route exact path="/productcategory/:category" render={(props) => <ProductCategoryPage {...props} key={Date.now()} />} />
           <Route exact path="/productsubcategory/:category/:subcategory" render={(props) => <ProductSubcategoryPage {...props} key={Date.now()} />} />
           <Route exact path="/productbysearch/:searchkey" render={(props) => <SearchPage {...props} key={Date.now()} />} />
+          <Route exact path="/orderlist" render={(props) => <OrderListPage user={this.state.user} {...props} key={Date.now()} />} />
           <Route exact path="/profile" render={(props) => <ProfilePage user={this.state.user} setUser={this.setUser} {...props} key={Date.now()} />} />
         </Switch>
       </Fragment>
