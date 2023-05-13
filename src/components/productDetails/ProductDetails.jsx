@@ -74,7 +74,6 @@ export default class ProductDetails extends Component {
           cogoToast.error("Your Request is not done! Try Again", { position: 'top-right' });
           this.setState({ addToCart: "Add To Cart" });
         }
-
       }).catch(() => {
         cogoToast.error("Your Request is not done! Try Again", { position: 'top-right' });
         this.setState({ addToCart: "Add To Cart" });
@@ -100,7 +99,6 @@ export default class ProductDetails extends Component {
           cogoToast.error("Your Request is not done! Try Again", { position: 'top-right' });
           this.setState({ addToCart: "Favorite" });
         }
-
       }).catch(() => {
         cogoToast.error("Your Request is not done! Try Again", { position: 'top-right' });
         this.setState({ addToCart: "Favorite" });
@@ -384,7 +382,7 @@ export default class ProductDetails extends Component {
 
         {this.PageRefresh()}
 
-      </Fragment >
+      </Fragment>
     )
   }
 }

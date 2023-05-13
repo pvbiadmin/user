@@ -35,6 +35,8 @@ export default class ReviewList extends Component {
           star = (<span className="text-success"><i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i></span>);
         } else if (review.reviewer_rating > 3 && review.reviewer_rating <= 4) {
           star = (<span className="text-success"><i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i></span>);
+        } else if (review.reviewer_rating > 4 && review.reviewer_rating <= 5) {
+          star = (<span className="text-success"><i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i> <i className="fa fa-star"></i></span>);
         }
 
         return (
@@ -49,14 +51,14 @@ export default class ReviewList extends Component {
         <div>
           <h6 className="mt-2">REVIEWS</h6>
           {myView}
-        </div >
+        </div>
       )
     } else {
       return (
         <div>
           <h6 className="mt-2">REVIEWS</h6>
           <p>No User reviews yet.</p>
-        </div >
+        </div>
       )
     }
   }

@@ -73,4 +73,8 @@ export default class AppUrl {
   static CartItemMinus(id, quantity, price) {
     return this.BaseUrl + "/cartitemminus/" + id + "/" + quantity + "/" + price;
   }
+
+  static OrderListByUser(email) {
+    return this.BaseUrl + "/orderlistbyuser/" + email;
+  }
 }

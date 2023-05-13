@@ -13,7 +13,6 @@ export default class OrderList extends Component {
     this.state = {
       ProductData: [],
       show: false,
-
       name: "",
       rating: "",
       comment: "",
@@ -83,16 +82,16 @@ export default class OrderList extends Component {
       MyFormData.append('reviewer_rating', rating)
       MyFormData.append('reviewer_comments', comment)
 
-      axios.post(AppURL.PostReview, MyFormData).then(response => {
-        if (response.data === 1) {
-          cogoToast.success("Review Submitted", { position: 'top-right' });
-          this.ReviewModalClose();
-        } else {
-          cogoToast.error("Your Request is not done! Try Again", { position: 'top-right' });
-        }
-      }).catch(() => {
-        cogoToast.error("Your Request is not done! Try Again", { position: 'top-right' });
-      });
+      // axios.post(AppURL.PostReview, MyFormData).then(response => {
+      //   if (response.data === 1) {
+      //     cogoToast.success("Review Submitted", { position: 'top-right' });
+      //     this.ReviewModalClose();
+      //   } else {
+      //     cogoToast.error("Your Request is not done! Try Again", { position: 'top-right' });
+      //   }
+      // }).catch(() => {
+      //   cogoToast.error("Your Request is not done! Try Again", { position: 'top-right' });
+      // });
     }
   } // End Post Review Method
 
@@ -109,12 +108,17 @@ export default class OrderList extends Component {
             <h5 className="product-name">{ProductList.product_name}</h5>
             <h6> Quantity: {ProductList.quantity} </h6>
             <p>{ProductList.size} | {ProductList.color}</p>
-            <h6>Price: {ProductList.unit_price} * {ProductList.quantity} = ${ProductList.total_price}</h6>
+            <h6>Price: ${ProductList.total_price} {"("}{ProductList.unit_price} * {ProductList.quantity}{")"}</h6>
             <h6>Status: {ProductList.order_status}</h6>
           </Col>
-          <Button onClick={this.ReviewModalOpen.bind(this, ProductList.product_code, ProductList.product_name)} className="btn btn-danger">Post Review</Button>
-          <hr></hr>
-        </div >
+          <Button
+            onClick={this.ReviewModalOpen.bind(this, ProductList.product_code, ProductList.product_name)}
+            className="btn btn-danger"
+          >
+            Post Review
+          </Button>
+          <hr />
+        </div>
       )
     });
 
@@ -122,7 +126,7 @@ export default class OrderList extends Component {
       <Fragment>
         <Container>
           <div className="section-title text-center mb-55">
-            <h2>Order History By ( {this.props.user.name} )</h2>
+            <h2>Order History By ({this.props.user.name})</h2>
           </div>
           <Card >
             <Card.Body>
@@ -168,7 +172,7 @@ export default class OrderList extends Component {
             </Button>
           </Modal.Footer>
         </Modal>
-      </Fragment >
+      </Fragment>
     )
   }
 }
